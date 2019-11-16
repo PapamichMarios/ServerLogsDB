@@ -1,0 +1,2 @@
+-change ids to serial type in postgres
+-do log in
