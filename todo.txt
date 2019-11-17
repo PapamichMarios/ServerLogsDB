@@ -1,2 +1,4 @@
 -change ids to serial type in postgres
 -do log in
+-return errors from backend
+-login name instead of email

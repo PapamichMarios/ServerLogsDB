@@ -1,8 +1,11 @@
 package com.dit.SystemDB.controller;
 
+import com.dit.SystemDB.request.SignInRequest;
 import com.dit.SystemDB.request.SignUpRequest;
 import com.dit.SystemDB.service.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,18 +20,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/signup")
-    public String signUpForm(Model model) {
-
-        model.addAttribute("signUpForm", new SignUpRequest());
-        return "signup";
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
+        return userService.signUp(signUpRequest);
     }
 
-    @PostMapping("/signup")
-    public String signUp(@ModelAttribute("signUpForm")  @Valid SignUpRequest signUpRequest,
-                         BindingResult bindingResult,
-                         Model model) {
-
-        return userService.signUp(signUpRequest, bindingResult, model);
+    @PostMapping("/login")
+    public ResponseEntity<?> signIn(@Valid @RequestBody SignInRequest signInRequest) {
+        return userService.signIn(signInRequest);
     }
 }

@@ -1,17 +1,29 @@
 package com.dit.SystemDB.service;
 
+import com.dit.SystemDB.exception.AppException;
+import com.dit.SystemDB.exception.UserExistsException;
+import com.dit.SystemDB.model.Role;
+import com.dit.SystemDB.model.RoleName;
 import com.dit.SystemDB.model.User;
+import com.dit.SystemDB.repository.RoleRepository;
 import com.dit.SystemDB.repository.UserRepository;
+import com.dit.SystemDB.request.SignInRequest;
 import com.dit.SystemDB.request.SignUpRequest;
+import com.dit.SystemDB.response.ApiResponse;
+import com.dit.SystemDB.response.SignInResponse;
+import com.dit.SystemDB.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
+import java.util.Collections;
 
 @Service
 public class UserService {
@@ -20,40 +32,71 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String signUp(SignUpRequest signUpRequest,
-                         BindingResult bindingResult,
-                         Model model) {
+    public ResponseEntity<?> signUp(SignUpRequest signUpRequest) {
 
-        // lookup user in database by email
-        if (userRepository.findByEmail(signUpRequest.getEmail()) != null) {
-            model.addAttribute("errorMessage", "The email given is already in use.");
-            bindingResult.rejectValue("email", "The email given is already in use.");
-        }
+        //check if the username already exists
+        userRepository.findByUsername(signUpRequest.getUsername())
+                .ifPresent((s) -> {
+                    throw new UserExistsException("The username given is already in use.");
+                });
 
-        //check for errors
-        if(bindingResult.hasErrors()) {
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors ) {
-                System.out.println (error.getObjectName() + " - " + error.getDefaultMessage());
-            }
+        //check if the email already exists
+        userRepository.findByEmail(signUpRequest.getEmail())
+                .ifPresent((s) -> {
+                    throw new UserExistsException("The email given is already in use.");
+                });
 
-           return "signup";
-        }
-
-        //create a user object
+        //create the new user
         User user = new User(signUpRequest);
 
         //encrypt password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        //save user
-        userRepository.save(user);
+        //add role
+        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+                .orElseThrow(() -> new AppException("User Role not set."));
 
-        return "index";
+        user.setRoles(Collections.singleton(userRole));
+
+        User result = userRepository.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/api/users/{username}")
+                .buildAndExpand(result.getUsername()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+
+    public ResponseEntity<?> signIn(SignInRequest signInRequest) {
+
+        //check if the user exists
+        User user = userRepository.findByUsername(signInRequest.getUsername())
+                .orElseThrow( () -> new AppException("Invalid username or password."));
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        signInRequest.getUsername(),
+                        signInRequest.getPassword()
+                )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = tokenProvider.generateToken(authentication);
+
+        return ResponseEntity.ok(new SignInResponse(jwt, user.getUsername(), roleRepository.findRoleAdminById(user.getId())));
     }
 }
