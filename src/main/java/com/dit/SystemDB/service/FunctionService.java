@@ -22,6 +22,10 @@ public class FunctionService {
         // find all the logs for function1
         List<Log> logs = logRepository.function1(time1, time2);
 
+        if (logs == null) {
+            return ResponseEntity.ok(new Function1Response<Log>());
+        }
+
         return ResponseEntity.ok(new Function1Response<Log>(logs));
     }
 }

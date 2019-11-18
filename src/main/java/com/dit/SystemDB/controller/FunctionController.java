@@ -19,9 +19,9 @@ public class FunctionController {
     @Autowired
     private FunctionService functionService;
 
-    @GetMapping(path = "/function1", params={"time1", "time2"})
-    public ResponseEntity<?> getFunction1(@RequestParam(value = "time1") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date time1,
-                                          @RequestParam(value = "time2") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date time2) {
+    @GetMapping(path = "/function1")
+    public ResponseEntity<?> getFunction1(@RequestParam("time1") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date time1,
+                                          @RequestParam("time2") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date time2) {
 
         return functionService.getFunction1(time1, time2);
     }
