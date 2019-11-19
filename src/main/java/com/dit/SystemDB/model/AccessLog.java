@@ -13,7 +13,7 @@ public class AccessLog {
     @Column(name="user_id", length = 50)
     private String user_id;
 
-    @Column(name="http_method", length = 8)
+    @Column(name="http_method", length = 20)
     private String http_method;
 
     @Column(name="resource", length = 250)

@@ -11,12 +11,12 @@ public class BlocksId implements Serializable {
     private Long log_id;
 
     @Column(name="block_id")
-    private Long block_id;
+    private String block_id;
 
     public BlocksId() {
     }
 
-    public BlocksId(Long log_id, Long block_id) {
+    public BlocksId(Long log_id,String block_id) {
         this.log_id = log_id;
         this.block_id = block_id;
     }
@@ -29,11 +29,11 @@ public class BlocksId implements Serializable {
         this.log_id = log_id;
     }
 
-    public Long getBlock_id() {
+    public String getBlock_id() {
         return block_id;
     }
 
-    public void setBlock_id(Long block_id) {
+    public void setBlock_id(String block_id) {
         this.block_id = block_id;
     }
 }
