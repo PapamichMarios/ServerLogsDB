@@ -11,18 +11,43 @@ class NavBar extends React.Component {
 
     render() {
 
-        const navLeft = (
-            <Nav className="mr-auto">
-              <NavItem className="button-margin-left">
-                <Link to="/function">
-                    <Button title="Function 1" variant="dark" style={{borderRadius: '12px'}}>
-                        Function 1
-                    </Button>
-                </Link>
-              </NavItem>
-            </Nav>
-        );
+        // for the left part of the navbar
+        let navLeft;
+        if (localStorage.getItem('loggedIn') === 'true') {
+            navLeft = (
+                <Nav className="mr-auto">
+                  <NavItem className="button-margin-left">
+                    <Link to="/procedure1">
+                        <Button title="Procedure 1" variant="dark" style={{borderRadius: '12px'}}>
+                            <b>Procedure 1</b>
+                        </Button>
+                    </Link>
+                  </NavItem>
 
+                  <NavItem className="button-margin-left">
+                    <Link to="/procedure2">
+                        <Button title="Procedure 2" variant="dark" style={{borderRadius: '12px'}}>
+                            <b>Procedure 2</b>
+                        </Button>
+                    </Link>
+                  </NavItem>
+
+                  <NavItem className="button-margin-left">
+                    <Link to="/procedure3">
+                        <Button title="Procedure 3" variant="dark" style={{borderRadius: '12px'}}>
+                            <b>Procedure 3</b>
+                        </Button>
+                    </Link>
+                  </NavItem>
+                </Nav>
+            );
+        } else {
+            navLeft = (
+                <Nav className="mr-auto"> </Nav>
+            );
+        }
+
+        // for the right part of the navbar
         let navRight;
         if (localStorage.getItem('loggedIn') === 'true') {
             navRight = (
