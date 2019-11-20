@@ -17,7 +17,7 @@ public class ProcedureController {
     @Autowired
     private ProcedureService procedureService;
 
-    @GetMapping(path = "/procedure1")
+    @GetMapping(path = "/executeProcedure1")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> getProcedure1(@RequestParam("from") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date from,
                                           @RequestParam("to")   @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date to) {

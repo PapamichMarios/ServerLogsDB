@@ -5,6 +5,9 @@ import NavBar from './navbar';
 import SignUp from './signup';
 import LogIn from './login';
 
+// procedures
+import Procedure1 from './procedure1/procedure1';
+
 import { BrowserRouter as Router, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
@@ -37,6 +40,8 @@ class App extends React.Component {
 
                     <Route exact path="/signup"     component={SignUp} />
                     <Route exact path="/login"      component={LogIn} />
+
+                    <Route exact path="/procedure1" component={Procedure1} />
                 </Switch>
             </div>
         );

@@ -1,10 +1,14 @@
 import React from 'react';
 
-import getRequest from './utils/requests/getRequest';
-import LoadingButton from './utils/loading/loadingButton';
+import Procedure1Results from './procedure1Results';
+import parser from '../utils/timestamp/parser';
+import getRequest from '../utils/requests/getRequest';
+import LoadingButton from '../utils/loading/loadingButton';
+import Loading from '../utils/loading/loading';
+import * as Constants from '../utils/constants';
 
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-
+import { Container, Row, Col, Card, Form, Button, InputGroup } from 'react-bootstrap';
+import { FaCalendar } from 'react-icons/fa';
 
 export default class Procedure1 extends React.Component {
 
@@ -12,8 +16,12 @@ export default class Procedure1 extends React.Component {
         super(props);
 
         this.state = {
-            dateFrom: ''
-            dateTo: ''
+            dateFrom: '2014-10-24T20:36:00',
+            dateTo: '2019-10-24T20:36:00',
+
+            results: [],
+
+            loading: false
         }
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -31,6 +39,31 @@ export default class Procedure1 extends React.Component {
 
         this.setState({ loading: true });
 
+        //parse the datetime-local input
+        const from = parser(this.state.dateFrom);
+        const to = parser(this.state.dateTo);
+
+        //fetch procedure
+        const url = this.props.action
+                    + 'from=' + from[0] + ' ' + from[1]
+                    + '&to=' + to[0] + ' ' + to[1];
+
+        getRequest(url)
+        .then(response => {
+
+            console.log(response);
+            if(!response.error) {
+                this.setState({
+                    results: response.result
+                }, () => {
+                    setTimeout( () => {
+                        this.setState({
+                            loading: false
+                        });
+                    }, Constants.TIMEOUT_DURATION);
+                });
+            }
+        })
 
     }
 
@@ -43,46 +76,50 @@ export default class Procedure1 extends React.Component {
                             <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Procedure 1 </Card.Header>
 
                             <Card.Body>
+
+                                <Card.Text>
+                                  1. Find the total logs per type that were created within a specified time range
+                                  and sort them in a descending order. Please note that individual files may log
+                                  actions of more than one type.
+                                </Card.Text>
+
                                 <Form
                                     action={this.props.action}
                                     method={this.props.method}
-                                    onSubmit={this.onSubmit
+                                    onSubmit={this.onSubmit}
                                 >
-
-                                    <Card.Text>
-                                      1. Find the total logs per type that were created within a specified time range
-                                      and sort them in a descending order. Please note that individual files may log
-                                      actions of more than one type.
-                                    </Card.Text>
-
                                     <Form.Group>
                                         <InputGroup>
-                                            <InputGroup.Prepend>
-                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
-                                             </InputGroup.Prepend>
 
                                             <Form.Label> From: </Form.Label>
                                             <Form.Control
-                                                type="date"
+                                                type="datetime-local"
+                                                step="1"
                                                 name="dateFrom"
                                                 onChange={this.onChange}
+                                                value="2014-10-24T20:36:00"
                                             />
+                                            <InputGroup.Append>
+                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
+                                            </InputGroup.Append>
                                         </InputGroup>
                                     </Form.Group>
 
 
                                     <Form.Group>
                                         <InputGroup>
-                                            <InputGroup.Prepend>
-                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
-                                            </InputGroup.Prepend>
 
                                             <Form.Label> To: </Form.Label>
                                             <Form.Control
-                                                type="date"
+                                                type="datetime-local"
+                                                step="1"
                                                 name="dateTo"
                                                 onChange={this.onChange}
+                                                value="2019-10-24T20:36:00"
                                             />
+                                            <InputGroup.Append>
+                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
+                                            </InputGroup.Append>
                                         </InputGroup>
                                     </Form.Group>
 
@@ -104,19 +141,23 @@ export default class Procedure1 extends React.Component {
                 </Row>
 
 
+                <br />
+                <br />
+
                 {/* present results */}
-                <Row>
-                    <Col>
-                        <Card border="dark">
-                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Procedure 1 Results</Card.Header>
 
-                            <Card.Body>
+                {this.state.loading ? (
+                    <Loading />
+                ) : (
+                    <Procedure1Results results={this.state.results} />
+                )}
 
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
             </Container>
         );
     }
+}
+
+Procedure1.defaultProps = {
+    method: 'GET',
+    action: '/executeProcedure1?'
 }
