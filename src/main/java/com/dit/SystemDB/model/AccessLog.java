@@ -16,7 +16,7 @@ public class AccessLog {
     @Column(name="http_method", length = 20)
     private String http_method;
 
-    @Column(name="resource", length = 250)
+    @Column(columnDefinition = "TEXT",name="resource")
     private String resource;
 
     @Column(columnDefinition = "TEXT", name="http_response")

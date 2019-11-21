@@ -16,6 +16,6 @@ import java.util.Map;
 @Repository
 public interface LogRepository extends JpaRepository<Log, Long> {
 
-    @Query(nativeQuery = true, value="SELECT time_stamp, total FROM log_db.function1(:from, :to)")
+    @Query(nativeQuery = true, value="SELECT * FROM log_db.function1(:from, :to)")
     List<Object[]> function1(@Param("from") Date from, @Param("to") Date to);
 }
