@@ -88,39 +88,44 @@ export default class Procedure1 extends React.Component {
                                     method={this.props.method}
                                     onSubmit={this.onSubmit}
                                 >
-                                    <Form.Group>
-                                        <InputGroup>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column md="4"> <b>From:</b> </Form.Label>
 
-                                            <Form.Label> From: </Form.Label>
-                                            <Form.Control
-                                                type="datetime-local"
-                                                step="1"
-                                                name="dateFrom"
-                                                onChange={this.onChange}
-                                                value="2014-10-24T20:36:00"
-                                            />
-                                            <InputGroup.Append>
-                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
-                                            </InputGroup.Append>
-                                        </InputGroup>
+                                        <Col md={8}>
+                                            <InputGroup>
+                                                <Form.Control
+                                                    type="datetime-local"
+                                                    step="1"
+                                                    name="dateFrom"
+                                                    onChange={this.onChange}
+                                                    placeholder="2014-10-24T20:36:00"
+                                                />
+                                                <InputGroup.Append>
+                                                    <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
+                                                </InputGroup.Append>
+                                            </InputGroup>
+                                        </Col>
+
                                     </Form.Group>
 
 
-                                    <Form.Group>
-                                        <InputGroup>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column md="4"> <b>To:</b> </Form.Label>
 
-                                            <Form.Label> To: </Form.Label>
-                                            <Form.Control
-                                                type="datetime-local"
-                                                step="1"
-                                                name="dateTo"
-                                                onChange={this.onChange}
-                                                value="2019-10-24T20:36:00"
-                                            />
-                                            <InputGroup.Append>
-                                                <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
-                                            </InputGroup.Append>
-                                        </InputGroup>
+                                        <Col md={8}>
+                                            <InputGroup>
+                                                <Form.Control
+                                                    type="datetime-local"
+                                                    step="1"
+                                                    name="dateTo"
+                                                    onChange={this.onChange}
+                                                    placeholder="2019-10-24T20:36:00"
+                                                />
+                                                <InputGroup.Append>
+                                                    <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
+                                                </InputGroup.Append>
+                                            </InputGroup>
+                                        </Col>
                                     </Form.Group>
 
                                     {(this.state.loading) ? (

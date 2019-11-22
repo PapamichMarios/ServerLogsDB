@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavLink, Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavDropdown, Button } from 'react-bootstrap';
-import { FaHome, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaSignInAlt, FaSignOutAlt, FaPlus } from 'react-icons/fa';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -58,6 +58,14 @@ class NavBar extends React.Component {
                             <FaHome style={{verticalAlign: 'baseline'}} />
                           </Button>
                       </NavLink>
+                    </NavItem>
+
+                    <NavItem className="button-margin">
+                        <NavLink to="/insert-log">
+                            <Button title="Insert Log" variant="dark" style={{borderRadius: '12px'}}>
+                                <FaPlus style={{verticalAlign: 'baseline'}} />
+                            </Button>
+                        </NavLink>
                     </NavItem>
 
                     <NavItem className="button-margin">

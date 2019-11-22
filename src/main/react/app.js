@@ -5,6 +5,10 @@ import NavBar from './navbar';
 import SignUp from './signup';
 import LogIn from './login';
 
+//insertion
+import Insert from './insert/insert';
+import Access from './insert/access';
+
 // procedures
 import Procedure1 from './procedure1/procedure1';
 
@@ -40,8 +44,14 @@ class App extends React.Component {
 
                     <Route exact path="/signup"     component={SignUp} />
                     <Route exact path="/login"      component={LogIn} />
+                    <Route exact path="/insert-log" component={Insert} />
 
+                    {/* procedures */}
                     <Route exact path="/procedure1" component={Procedure1} />
+
+                    {/* insert logs */}
+                    <Route exact path="/insert/access" component={Access} />
+
                 </Switch>
             </div>
         );

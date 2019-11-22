@@ -38,7 +38,6 @@ export default class Procedure1Results extends React.Component {
                                 <Table striped hover>
                                     <thead>
                                         <tr>
-                                            <th> </th>
                                             <th> Type </th>
                                             <th> Total </th>
                                         </tr>

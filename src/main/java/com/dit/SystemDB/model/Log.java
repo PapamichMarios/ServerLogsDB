@@ -1,5 +1,6 @@
 package com.dit.SystemDB.model;
 
+import com.dit.SystemDB.request.AccessRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -41,6 +42,12 @@ public class Log {
         this.type = type;
         this.access_log = access_log;
         this.hdfsLogs = hdfsLogs;
+    }
+
+    public Log(AccessRequest accessRequest) {
+        this.source_ip = accessRequest.getSource_ip();
+        this.log_timestamp = accessRequest.getTimestamp();
+        this.type = "access";
     }
 
     public Long getId() {

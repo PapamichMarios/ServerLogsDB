@@ -1,5 +1,7 @@
 package com.dit.SystemDB.model;
 
+import com.dit.SystemDB.request.AccessRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,7 +25,7 @@ public class AccessLog {
     private String http_response;
 
     @Column(name="size")
-    private int size;
+    private Long size;
 
     @Column(columnDefinition = "TEXT", name="referer")
     private String referer;
@@ -37,7 +39,7 @@ public class AccessLog {
     @JoinColumn(name="log_id")
     private Log log;
 
-    public AccessLog(Long id, String user_id, String http_method, String resource, String http_response, int size, String referer, String user_agent, Log log) {
+    public AccessLog(Long id, String user_id, String http_method, String resource, String http_response, Long size, String referer, String user_agent, Log log) {
         this.id = id;
         this.user_id = user_id;
         this.http_method = http_method;
@@ -47,6 +49,16 @@ public class AccessLog {
         this.referer = referer;
         this.user_agent = user_agent;
         this.log = log;
+    }
+
+    public AccessLog(AccessRequest accessRequest) {
+        this.user_id = accessRequest.getUser_id();
+        this.http_method = accessRequest.getHttp_method();
+        this.resource = accessRequest.getResource();
+        this.http_response = accessRequest.getHttp_response();
+        this.size = accessRequest.getSize();
+        this.referer = accessRequest.getReferer();
+        this.user_agent = accessRequest.getUser_agent();
     }
 
     public AccessLog() {
@@ -92,11 +104,11 @@ public class AccessLog {
         this.http_response = http_response;
     }
 
-    public int getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
