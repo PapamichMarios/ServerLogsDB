@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-// request for both served and receiving
-
-public class HdfsDataRequest {
+public class Received {
 
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -20,25 +18,19 @@ public class HdfsDataRequest {
     @NotNull
     private String block_id;
 
+    @NotNull
     private int size;
 
     @NotNull
     private String destination_ip;
 
-    public HdfsDataRequest() { }
+    public Received() { }
 
-    public HdfsDataRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, int size, @NotNull String destination_ip) {
+    public Received(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull int size, @NotNull String destination_ip) {
         this.timestamp = timestamp;
         this.source_ip = source_ip;
         this.block_id = block_id;
         this.size = size;
-        this.destination_ip = destination_ip;
-    }
-
-    public HdfsDataRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull String destination_ip) {
-        this.timestamp = timestamp;
-        this.source_ip = source_ip;
-        this.block_id = block_id;
         this.destination_ip = destination_ip;
     }
 

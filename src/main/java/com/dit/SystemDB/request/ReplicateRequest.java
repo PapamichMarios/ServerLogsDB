@@ -1,12 +1,12 @@
 package com.dit.SystemDB.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
-public class HdfsDataRequestWithSize {
+public class ReplicateRequest {
 
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -19,19 +19,16 @@ public class HdfsDataRequestWithSize {
     private String block_id;
 
     @NotNull
-    private int size;
+    private List<String> destination_ips;
 
-    @NotNull
-    private String destination_ip;
+    public ReplicateRequest() {
+    }
 
-    public HdfsDataRequestWithSize() { }
-
-    public HdfsDataRequestWithSize(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull int size, @NotNull String destination_ip) {
+    public ReplicateRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull List<String> destination_ips) {
         this.timestamp = timestamp;
         this.source_ip = source_ip;
         this.block_id = block_id;
-        this.size = size;
-        this.destination_ip = destination_ip;
+        this.destination_ips = destination_ips;
     }
 
     public Date getTimestamp() {
@@ -58,19 +55,11 @@ public class HdfsDataRequestWithSize {
         this.block_id = block_id;
     }
 
-    public int getSize() {
-        return size;
+    public List<String> getDestination_ips() {
+        return destination_ips;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public String getDestination_ip() {
-        return destination_ip;
-    }
-
-    public void setDestination_ip(String destination_ip) {
-        this.destination_ip = destination_ip;
+    public void setDestination_ips(List<String> destination_ips) {
+        this.destination_ips = destination_ips;
     }
 }

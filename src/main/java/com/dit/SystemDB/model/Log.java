@@ -1,12 +1,9 @@
 package com.dit.SystemDB.model;
 
-import com.dit.SystemDB.request.AccessRequest;
-import com.dit.SystemDB.request.HdfsDataRequest;
-import com.dit.SystemDB.request.HdfsDataRequestWithSize;
+import com.dit.SystemDB.request.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -58,10 +55,22 @@ public class Log {
         this.type = type;
     }
 
-    public Log(HdfsDataRequestWithSize hdfsDataRequest) {
+    public Log(Received hdfsDataRequest) {
         this.source_ip = hdfsDataRequest.getSource_ip();
         this.log_timestamp = hdfsDataRequest.getTimestamp();
         this.type = "received";
+    }
+
+    public Log(ReplicateRequest replicateRequest) {
+        this.source_ip = replicateRequest.getSource_ip();
+        this.log_timestamp = replicateRequest.getTimestamp();
+        this.type = "replicate";
+    }
+
+    public Log(DeleteRequest deleteRequest) {
+        this.source_ip = deleteRequest.getSource_ip();
+        this.log_timestamp = deleteRequest.getTimestamp();
+        this.type = "delete";
     }
 
     public Long getId() {

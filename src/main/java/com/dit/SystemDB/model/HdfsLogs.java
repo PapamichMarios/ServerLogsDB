@@ -1,7 +1,6 @@
 package com.dit.SystemDB.model;
 
-import com.dit.SystemDB.request.HdfsDataRequest;
-import com.dit.SystemDB.request.HdfsDataRequestWithSize;
+import com.dit.SystemDB.request.Received;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class HdfsLogs {
 
     }
 
-    public HdfsLogs(HdfsDataRequestWithSize hdfsDataRequest) {
+    public HdfsLogs(Received hdfsDataRequest) {
         this.size = size;
     }
 
