@@ -8,7 +8,7 @@ import * as Constants from '../utils/constants';
 
 import { Container, Row, Col, Card, Form, InputGroup, Button, Alert } from 'react-bootstrap';
 
-export default class Access extends React.Component {
+export default class Replicate extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,13 +17,8 @@ export default class Access extends React.Component {
             timestamp: '',
             source_ip: '',
 
-            http_method: '',
-            http_response: '',
-            referer: '',
-            resource: '',
-            size: '',
-            user_agent: '',
-            user_id: '',
+            block_id: '',
+            destination_ips: '',
 
             loading: '',
 
@@ -49,19 +44,16 @@ export default class Access extends React.Component {
 
         this.setState({ loading: true })
 
+        //split the destination ips
+        const destination_ipsList = this.state.destination_ips.split(',')
 
         //fetch the request
         const timestamp = parser(this.state.timestamp);
         const bodyObj = {
             timestamp: timestamp[0] + ' ' + timestamp[1],
             source_ip: this.state.source_ip,
-            http_method: this.state.http_method,
-            http_response: this.state.http_response,
-            referer: this.state.referer,
-            resource: this.state.resource,
-            size: this.state.size,
-            user_agent: this.state.user_agent,
-            user_id: this.state.user_id
+            block_id: this.state.block_id,
+            destination_ips: destination_ipsList
         };
 
         postRequest(this.props.action, bodyObj)
@@ -123,77 +115,29 @@ export default class Access extends React.Component {
                                     </Form.Group>
 
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>HTTP Method:</b> </Form.Label>
+                                        <Form.Label column md="6"> <b>Block ID:</b> </Form.Label>
                                         <Col>
                                             <Form.Control
                                                 type="text"
-                                                name="http_method"
+                                                name="block_id"
                                                 onChange={this.onChange}
                                             />
                                         </Col>
                                     </Form.Group>
 
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>HTTP Response:</b> </Form.Label>
-                                        <Col>
-                                            <Form.Control
-                                                type="text"
-                                                name="http_response"
-                                                onChange={this.onChange}
-                                            />
-                                        </Col>
-                                    </Form.Group>
+                                    <Alert variant="info">
+                                        <p>
+                                            For multiple destination IPs write each one of them separated with commas, e.g. dest_ip1,dest_ip2,...,dest_ipn
+                                        </p>
+                                    </Alert>
 
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Referer:</b> </Form.Label>
+                                        <Form.Label column md="6"> <b>Destination IP(s):</b> </Form.Label>
                                         <Col>
                                             <Form.Control
-                                                type="text"
-                                                name="referer"
-                                                onChange={this.onChange}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Resource:</b> </Form.Label>
-                                        <Col>
-                                            <Form.Control
-                                                type="text"
-                                                name="resource"
-                                                onChange={this.onChange}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Size:</b> </Form.Label>
-                                        <Col>
-                                            <Form.Control
-                                                type="number"
-                                                name="resource"
-                                                onChange={this.onChange}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>User Agent String:</b> </Form.Label>
-                                        <Col>
-                                            <Form.Control
-                                                type="text"
-                                                name="user_agent"
-                                                onChange={this.onChange}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>User ID:</b> </Form.Label>
-                                        <Col>
-                                            <Form.Control
-                                                type="text"
-                                                name="user_id"
+                                                as="textarea"
+                                                rows="3"
+                                                name="destination_ips"
                                                 onChange={this.onChange}
                                             />
                                         </Col>
@@ -236,7 +180,7 @@ export default class Access extends React.Component {
     }
 }
 
-Access.defaultProps = {
+Replicate.defaultProps = {
     method: 'POST',
-    action: '/insertAccess'
+    action: '/insertReplicate'
 };

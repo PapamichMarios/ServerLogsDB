@@ -8,6 +8,7 @@ import LogIn from './login';
 //insertion
 import Insert from './insert/insert';
 import Access from './insert/access';
+import Replicate from './insert/replicate';
 
 // procedures
 import Procedure1 from './procedure1/procedure1';
@@ -52,6 +53,7 @@ class App extends React.Component {
                     {/* insert logs */}
                     <Route exact path="/insert/access" component={Access} />
 
+                    <Route exact path="/insert/replicate" component={Replicate} />
                 </Switch>
             </div>
         );

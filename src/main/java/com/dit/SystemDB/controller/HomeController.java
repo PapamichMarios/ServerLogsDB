@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping(value = {"/welcome", "/", "/home", "/signup", "/login", "/procedure1", "/procedure2", "/procedure3",
-                        "/insert", "/insert/**"})
+                        "/insert-log", "/insert/**"})
     public String index() {
         return "index";
     }
