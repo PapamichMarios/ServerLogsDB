@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class DestinationsId implements Serializable {
 
     @Column(name="log_id")
-    private Long lod_id;
+    private Long log_id;
 
     @Column(name="destination")
     private String destination;
@@ -16,12 +16,17 @@ public class DestinationsId implements Serializable {
     public DestinationsId() {
     }
 
+    public DestinationsId(Long lod_id, String destination) {
+        this.log_id = lod_id;
+        this.destination = destination;
+    }
+
     public Long getLod_id() {
-        return lod_id;
+        return log_id;
     }
 
     public void setLod_id(Long lod_id) {
-        this.lod_id = lod_id;
+        this.log_id = lod_id;
     }
 
     public String getDestination() {

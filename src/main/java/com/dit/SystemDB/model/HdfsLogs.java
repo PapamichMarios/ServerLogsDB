@@ -1,6 +1,10 @@
 package com.dit.SystemDB.model;
 
+import com.dit.SystemDB.request.HdfsDataRequest;
+import com.dit.SystemDB.request.HdfsDataRequestWithSize;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,10 +26,10 @@ public class HdfsLogs {
 
     // pk is fk to blocks
     @OneToMany(mappedBy = "hdfsLogs", cascade = CascadeType.ALL)
-    private List<Blocks> blocks;
+    private List<Blocks> blocks = new ArrayList<>();
 
     @OneToMany(mappedBy = "hdfsLogs", cascade = CascadeType.ALL)
-    private List<Destinations> destinations;
+    private List<Destinations> destinations = new ArrayList<>();
 
     public HdfsLogs(Long id, int size, Log log, List<Blocks> blocks, List<Destinations> destinations) {
         this.id = id;
@@ -36,6 +40,11 @@ public class HdfsLogs {
     }
 
     public HdfsLogs() {
+
+    }
+
+    public HdfsLogs(HdfsDataRequestWithSize hdfsDataRequest) {
+        this.size = size;
     }
 
     public Long getId() {

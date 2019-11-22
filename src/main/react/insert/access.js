@@ -53,7 +53,7 @@ export default class Access extends React.Component {
         //fetch the request
         const timestamp = parser(this.state.timestamp);
         const bodyObj = {
-            timestamp: timestamp,
+            timestamp: timestamp[0] + ' ' + timestamp[1],
             source_ip: this.state.source_ip,
             http_method: this.state.http_method,
             http_response: this.state.http_response,
@@ -67,16 +67,18 @@ export default class Access extends React.Component {
         postRequest(this.props.action, bodyObj)
         .then(response => {
 
+            console.log(response);
+
             if(response.error) {
                 this.setState({
                     hasError: true,
-                    errorMsg: response.msg,
+                    errorMsg: response.message,
                     loading:false
                 });
             } else {
                 this.setState({
                     success: true,
-                    successMsg: response.msg,
+                    successMsg: response.message,
                     loading: false
                 });
             }

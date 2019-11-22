@@ -33,12 +33,11 @@ public class AccessRequest {
     @NotNull
     private String user_agent;
 
-    @NotNull
     private String user_id;
 
     public AccessRequest() { }
 
-    public AccessRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String http_method, @NotNull String http_response, @NotNull String referer, @NotNull String resource, @NotNull Long size, @NotNull String user_agent, @NotNull String user_id) {
+    public AccessRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String http_method, @NotNull String http_response, @NotNull String referer, @NotNull String resource, Long size, @NotNull String user_agent, String user_id) {
         this.timestamp = timestamp;
         this.source_ip = source_ip;
         this.http_method = http_method;

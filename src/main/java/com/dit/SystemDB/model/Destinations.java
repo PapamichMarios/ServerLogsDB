@@ -1,5 +1,7 @@
 package com.dit.SystemDB.model;
 
+import com.dit.SystemDB.request.HdfsDataRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,7 @@ public class Destinations {
     private DestinationsId destinationsId;
 
     // shared pk with hdfs logs
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "log_id")
     @JoinColumn(name="log_id")
     private HdfsLogs hdfsLogs;
@@ -21,6 +23,10 @@ public class Destinations {
     }
 
     public Destinations() {
+    }
+
+    public Destinations(HdfsDataRequest hdfsDataRequest) {
+        this.destinationsId.setDestination(hdfsDataRequest.getDestination_ip());
     }
 
     public DestinationsId getDestinationsId() {

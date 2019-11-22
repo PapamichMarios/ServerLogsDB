@@ -16,7 +16,7 @@ public class BlocksId implements Serializable {
     public BlocksId() {
     }
 
-    public BlocksId(Long log_id,String block_id) {
+    public BlocksId(Long log_id, String block_id) {
         this.log_id = log_id;
         this.block_id = block_id;
     }

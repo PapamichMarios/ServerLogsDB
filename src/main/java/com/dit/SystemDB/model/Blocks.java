@@ -1,5 +1,7 @@
 package com.dit.SystemDB.model;
 
+import com.dit.SystemDB.request.HdfsDataRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,10 @@ public class Blocks {
     }
 
     public Blocks() { }
+
+    public Blocks(HdfsDataRequest hdfsDataRequest) {
+        this.blocksId.setBlock_id(hdfsDataRequest.getBlock_id());
+    }
 
     public BlocksId getBlocksId() {
         return blocksId;
