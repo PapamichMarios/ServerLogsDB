@@ -57,9 +57,9 @@ public class Log {
         this.type = type;
     }
 
-    public Log(Received hdfsDataRequest) {
-        this.source_ip = hdfsDataRequest.getSource_ip();
-        this.log_timestamp = hdfsDataRequest.getTimestamp();
+    public Log(ReceivedRequest receivedRequest) {
+        this.source_ip = receivedRequest.getSource_ip();
+        this.log_timestamp = receivedRequest.getTimestamp();
         this.type = "received";
     }
 

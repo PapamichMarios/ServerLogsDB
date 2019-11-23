@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Procedure3Results from './procedure3Results';
-import parser from '../utils/timestamp/parser';
-import getRequest from '../utils/requests/getRequest';
-import LoadingButton from '../utils/loading/loadingButton';
-import Loading from '../utils/loading/loading';
-import * as Constants from '../utils/constants';
+import parser from '../../utils/timestamp/parser';
+import getRequest from '../../utils/requests/getRequest';
+import LoadingButton from '../../utils/loading/loadingButton';
+import Loading from '../../utils/loading/loading';
+import * as Constants from '../../utils/constants';
 
 import { Container, Row, Col, Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { FaCalendar } from 'react-icons/fa';
@@ -17,7 +17,6 @@ export default class Procedure1 extends React.Component {
 
         this.state = {
             day: '2014-10-24',
-
 
             results: [],
 
@@ -85,7 +84,7 @@ export default class Procedure1 extends React.Component {
                                     onSubmit={this.onSubmit}
                                 >
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="4"> <b>From:</b> </Form.Label>
+                                        <Form.Label column md="4"> <b>Date:</b> </Form.Label>
 
                                         <Col md={8}>
                                             <InputGroup>

@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class Received {
+public class ReceivedRequest {
 
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -19,14 +19,14 @@ public class Received {
     private String block_id;
 
     @NotNull
-    private int size;
+    private Long size;
 
     @NotNull
     private String destination_ip;
 
-    public Received() { }
+    public ReceivedRequest() { }
 
-    public Received(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull int size, @NotNull String destination_ip) {
+    public ReceivedRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull Long size, @NotNull String destination_ip) {
         this.timestamp = timestamp;
         this.source_ip = source_ip;
         this.block_id = block_id;
@@ -58,11 +58,11 @@ public class Received {
         this.block_id = block_id;
     }
 
-    public int getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 

@@ -17,6 +17,18 @@ public class SignUpRequest {
     @Size(min=6, max=40)
     private String password;
 
+    @Size(min=6, max=100)
+    private String address;
+
+    public SignUpRequest() { }
+
+    public SignUpRequest(@NotNull @Size(min = 4, max = 40) String username, @NotNull @Size(min = 2, max = 40) String email, @NotNull @Size(min = 6, max = 40) String password, @Size(min = 6, max = 100) String address) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -39,5 +51,13 @@ public class SignUpRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

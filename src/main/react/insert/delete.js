@@ -17,8 +17,8 @@ export default class Delete extends React.Component {
             timestamp: '',
             source_ip: '',
 
-            block_id: '',
-            destination_ips: '',
+            block_ids: '',
+            destination_ip: '',
 
             loading: '',
 
@@ -44,16 +44,16 @@ export default class Delete extends React.Component {
 
         this.setState({ loading: true })
 
-        //split the destination ips
-        const destination_ipsList = this.state.destination_ips.split(',')
+        //split the block ids
+        const block_idsList = this.state.block_ids.split(',')
 
         //fetch the request
         const timestamp = parser(this.state.timestamp);
         const bodyObj = {
             timestamp: timestamp[0] + ' ' + timestamp[1],
             source_ip: this.state.source_ip,
-            block_id: this.state.block_id,
-            destination_ips: destination_ipsList
+            block_ids: block_idsList,
+            destination_ip: this.state.destination_ip
         };
 
         postRequest(this.props.action, bodyObj)
@@ -115,11 +115,11 @@ export default class Delete extends React.Component {
                                     </Form.Group>
 
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Block ID:</b> </Form.Label>
+                                        <Form.Label column md="6"> <b>Destination IP:</b> </Form.Label>
                                         <Col>
                                             <Form.Control
                                                 type="text"
-                                                name="block_id"
+                                                name="destination_ip"
                                                 onChange={this.onChange}
                                             />
                                         </Col>
@@ -127,17 +127,17 @@ export default class Delete extends React.Component {
 
                                     <Alert variant="info">
                                         <p>
-                                            For multiple destination IPs write each one of them separated with commas, e.g. dest_ip1,dest_ip2,...,dest_ipn
+                                            For multiple block IDs write each one of them separated with commas, e.g. block_id1,block_id2,...,block_idn
                                         </p>
                                     </Alert>
 
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Destination IP(s):</b> </Form.Label>
+                                        <Form.Label column md="6"> <b>Block ID(s):</b> </Form.Label>
                                         <Col>
                                             <Form.Control
                                                 as="textarea"
                                                 rows="3"
-                                                name="destination_ips"
+                                                name="block_ids"
                                                 onChange={this.onChange}
                                             />
                                         </Col>

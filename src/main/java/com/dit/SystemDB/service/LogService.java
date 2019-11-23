@@ -1,15 +1,18 @@
 package com.dit.SystemDB.service;
 
+import com.dit.SystemDB.exception.ResourceNotFoundException;
 import com.dit.SystemDB.model.*;
 import com.dit.SystemDB.repository.LogRepository;
+import com.dit.SystemDB.repository.QueryRepository;
+import com.dit.SystemDB.repository.UserRepository;
 import com.dit.SystemDB.request.*;
 import com.dit.SystemDB.response.ApiResponse;
+import com.dit.SystemDB.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class LogService {
@@ -17,10 +20,22 @@ public class LogService {
     @Autowired
     private LogRepository logRepository;
 
-    public ResponseEntity<?> insertAccess(AccessRequest accessRequest) {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private QueryRepository queryRepository;
+
+    public ResponseEntity<?> insertAccess(AccessRequest accessRequest, UserDetailsImpl currentUser) {
+
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         Log log = new Log(accessRequest);
         AccessLog access = new AccessLog(accessRequest);
+        Query query = new Query(accessRequest);
 
         // set log
         log.setAccess_log(access);
@@ -28,19 +43,30 @@ public class LogService {
         // set access log
         access.setLog(log);
 
-        // save both
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
         logRepository.save(log);
+        queryRepository.save(query);
 
         return ResponseEntity.ok(new ApiResponse(true, "Access type Log inserted successfully!"));
     }
 
-    public ResponseEntity<?> insertReceived(Received hdfsDataRequest) {
+    public ResponseEntity<?> insertReceived(ReceivedRequest receivedRequest, UserDetailsImpl currentUser) {
 
-        Log log = new Log(hdfsDataRequest);
-        HdfsLogs hdfs = new HdfsLogs(hdfsDataRequest);
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+
+        Log log = new Log(receivedRequest);
+        HdfsLogs hdfs = new HdfsLogs(receivedRequest);
+        Query query = new Query(receivedRequest);
 
         BlocksId blocksId = new BlocksId();
-        blocksId.setBlock_id(hdfsDataRequest.getBlock_id());
+        blocksId.setBlock_id(receivedRequest.getBlock_id());
         Blocks blocks = new Blocks();
         blocks.setBlocksId(blocksId);
         blocks.setHdfsLogs(hdfs);
@@ -50,7 +76,7 @@ public class LogService {
         hdfs.setBlocks(blocksList);
 
         DestinationsId destinationsId = new DestinationsId();
-        destinationsId.setDestination(hdfsDataRequest.getDestination_ip());
+        destinationsId.setDestination(receivedRequest.getDestination_ip());
         Destinations destinations = new Destinations();
         destinations.setDestinationsId(destinationsId);
         destinations.setHdfsLogs(hdfs);
@@ -63,14 +89,27 @@ public class LogService {
         log.setHdfsLogs(hdfs);
 
         logRepository.save(log);
+
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
+        queryRepository.save(query);
 
         return ResponseEntity.ok(new ApiResponse(true, "Received type Log inserted successfully!"));
     }
 
-    public ResponseEntity<?> insertReceiving(HdfsDataRequest hdfsDataRequest) {
+    public ResponseEntity<?> insertReceiving(HdfsDataRequest hdfsDataRequest, UserDetailsImpl currentUser) {
+
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         Log log = new Log(hdfsDataRequest, "receiving");
         HdfsLogs hdfs = new HdfsLogs();
+        Query query = new Query(hdfsDataRequest, "RECEIVING");
 
         BlocksId blocksId = new BlocksId();
         blocksId.setBlock_id(hdfsDataRequest.getBlock_id());
@@ -96,14 +135,27 @@ public class LogService {
         log.setHdfsLogs(hdfs);
 
         logRepository.save(log);
+
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
+        queryRepository.save(query);
 
         return ResponseEntity.ok(new ApiResponse(true, "Receiving type Log inserted successfully!"));
     }
 
-    public ResponseEntity<?> insertServed(HdfsDataRequest hdfsDataRequest) {
+    public ResponseEntity<?> insertServed(HdfsDataRequest hdfsDataRequest, UserDetailsImpl currentUser) {
+
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         Log log = new Log(hdfsDataRequest, "served");
         HdfsLogs hdfs = new HdfsLogs();
+        Query query = new Query(hdfsDataRequest, "SERVED");
 
         BlocksId blocksId = new BlocksId();
         blocksId.setBlock_id(hdfsDataRequest.getBlock_id());
@@ -130,13 +182,26 @@ public class LogService {
 
         logRepository.save(log);
 
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
+        queryRepository.save(query);
+
         return ResponseEntity.ok(new ApiResponse(true, "Served type Log inserted successfully!"));
     }
 
-    public ResponseEntity<?> insertReplicate(ReplicateRequest replicateRequest) {
+    public ResponseEntity<?> insertReplicate(ReplicateRequest replicateRequest, UserDetailsImpl currentUser) {
+
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         Log log = new Log(replicateRequest);
         HdfsLogs hdfs = new HdfsLogs();
+        Query query = new Query(replicateRequest);
 
         BlocksId blocksId = new BlocksId();
         blocksId.setBlock_id(replicateRequest.getBlock_id());
@@ -172,13 +237,26 @@ public class LogService {
 
         logRepository.save(log);
 
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
+        queryRepository.save(query);
+
         return ResponseEntity.ok(new ApiResponse(true, "Replicate type Log inserted successfully!"));
     }
 
-    public ResponseEntity<?> insertDelete(DeleteRequest deleteRequest) {
+    public ResponseEntity<?> insertDelete(DeleteRequest deleteRequest, UserDetailsImpl currentUser) {
+
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         Log log = new Log(deleteRequest);
         HdfsLogs hdfs = new HdfsLogs();
+        Query query = new Query(deleteRequest);
 
         // replicate log has multiple destinations
         List<Blocks> blocksList = new ArrayList<>();
@@ -204,6 +282,13 @@ public class LogService {
 
         logRepository.save(log);
 
-        return ResponseEntity.ok(new ApiResponse(true, "Replicate type Log inserted successfully!"));
+        // save query for the user making it
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        // save log and user queries
+        queryRepository.save(query);
+
+        return ResponseEntity.ok(new ApiResponse(true, "Delete type Log inserted successfully!"));
     }
 }

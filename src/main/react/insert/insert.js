@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 
-
-export default class Insert extends React.Component {
+class Insert extends React.Component {
 
     constructor(props) {
         super(props);
@@ -101,3 +101,5 @@ export default class Insert extends React.Component {
         )
     }
 }
+
+export default withRouter(Insert);

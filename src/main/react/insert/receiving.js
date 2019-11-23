@@ -18,7 +18,7 @@ export default class Receiving extends React.Component {
             source_ip: '',
 
             block_id: '',
-            destination_ips: '',
+            destination_ip: '',
 
             loading: '',
 
@@ -44,16 +44,13 @@ export default class Receiving extends React.Component {
 
         this.setState({ loading: true })
 
-        //split the destination ips
-        const destination_ipsList = this.state.destination_ips.split(',')
-
         //fetch the request
         const timestamp = parser(this.state.timestamp);
         const bodyObj = {
             timestamp: timestamp[0] + ' ' + timestamp[1],
             source_ip: this.state.source_ip,
             block_id: this.state.block_id,
-            destination_ips: destination_ipsList
+            destination_ip: this.state.destination_ip
         };
 
         postRequest(this.props.action, bodyObj)
@@ -125,19 +122,12 @@ export default class Receiving extends React.Component {
                                         </Col>
                                     </Form.Group>
 
-                                    <Alert variant="info">
-                                        <p>
-                                            For multiple destination IPs write each one of them separated with commas, e.g. dest_ip1,dest_ip2,...,dest_ipn
-                                        </p>
-                                    </Alert>
-
                                     <Form.Group as={Row}>
-                                        <Form.Label column md="6"> <b>Destination IP(s):</b> </Form.Label>
+                                        <Form.Label column md="6"> <b>Destination IP:</b> </Form.Label>
                                         <Col>
                                             <Form.Control
-                                                as="textarea"
-                                                rows="3"
-                                                name="destination_ips"
+                                                type="text"
+                                                name="destination_ip"
                                                 onChange={this.onChange}
                                             />
                                         </Col>

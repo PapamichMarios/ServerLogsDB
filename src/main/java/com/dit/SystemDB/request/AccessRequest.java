@@ -28,6 +28,7 @@ public class AccessRequest {
     @NotNull
     private String resource;
 
+    @NotNull
     private Long size;
 
     @NotNull

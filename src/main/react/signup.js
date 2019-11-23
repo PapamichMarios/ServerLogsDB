@@ -4,7 +4,7 @@ import LoadingButton from './utils/loading/loadingButton.js';
 import * as Constants from './utils/constants';
 
 import { Container, Row, Col, Form, Button, Card, InputGroup, Alert } from 'react-bootstrap';
-import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
+import { FaUser, FaLock, FaEnvelope, FaHome } from 'react-icons/fa';
 
 export default class SignUp extends React.Component{
     constructor(props) {
@@ -15,6 +15,7 @@ export default class SignUp extends React.Component{
             password: '',
             repeatPassword: '',
             email: '',
+            address: '',
 
             hasError: false,
             errorMsg: '',
@@ -53,7 +54,8 @@ export default class SignUp extends React.Component{
                 body: JSON.stringify({
                     username: this.state.username,
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    address: this.state.address
                 })
             })
             .then(response => response.json())
@@ -145,6 +147,20 @@ export default class SignUp extends React.Component{
                                             type="email"
                                             name="email"
                                             placeholder="E-mail Address"
+                                            onChange={this.onChange}
+                                        />
+                                      </InputGroup>
+                                    </Form.Group>
+
+                                    <Form.Group controlId="formAddress">
+                                      <InputGroup>
+                                        <InputGroup.Prepend>
+                                          <InputGroup.Text> <FaHome/> </InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control
+                                            type="text"
+                                            name="address"
+                                            placeholder="Home Address"
                                             onChange={this.onChange}
                                         />
                                       </InputGroup>

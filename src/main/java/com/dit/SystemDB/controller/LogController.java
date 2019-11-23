@@ -2,6 +2,8 @@ package com.dit.SystemDB.controller;
 
 
 import com.dit.SystemDB.request.*;
+import com.dit.SystemDB.security.CurrentUser;
+import com.dit.SystemDB.security.UserDetailsImpl;
 import com.dit.SystemDB.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
-import java.util.concurrent.Delayed;
 
 @Controller
 public class LogController {
@@ -21,43 +22,49 @@ public class LogController {
 
     @PostMapping("/insertAccess")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertAccess(@Valid @RequestBody AccessRequest accessRequest) {
+    public ResponseEntity<?> insertAccess(@Valid @RequestBody AccessRequest accessRequest,
+                                          @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertAccess(accessRequest);
+        return logService.insertAccess(accessRequest, currentUser);
     }
 
     @PostMapping("/insertReceived")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertReceived(@Valid @RequestBody Received received) {
+    public ResponseEntity<?> insertReceived(@Valid @RequestBody ReceivedRequest receivedRequest,
+                                            @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertReceived(received);
+        return logService.insertReceived(receivedRequest, currentUser);
     }
 
     @PostMapping("/insertReceiving")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertReceiving(@Valid @RequestBody HdfsDataRequest hdfsDataRequest) {
+    public ResponseEntity<?> insertReceiving(@Valid @RequestBody HdfsDataRequest hdfsDataRequest,
+                                             @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertReceiving(hdfsDataRequest);
+        return logService.insertReceiving(hdfsDataRequest, currentUser);
     }
 
     @PostMapping("/insertServed")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertServed(@Valid @RequestBody HdfsDataRequest hdfsDataRequest) {
+    public ResponseEntity<?> insertServed(@Valid @RequestBody HdfsDataRequest hdfsDataRequest,
+                                          @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertServed(hdfsDataRequest);
+        return logService.insertServed(hdfsDataRequest, currentUser);
     }
 
     @PostMapping("/insertReplicate")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertReplicate(@Valid @RequestBody ReplicateRequest replicateRequest) {
+    public ResponseEntity<?> insertReplicate(@Valid @RequestBody ReplicateRequest replicateRequest,
+                                             @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertReplicate(replicateRequest);
+        return logService.insertReplicate(replicateRequest, currentUser);
     }
 
     @PostMapping("/insertDelete")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> insertDelete(@Valid @RequestBody DeleteRequest deleteRequest) {
+    public ResponseEntity<?> insertDelete(@Valid @RequestBody DeleteRequest deleteRequest,
+                                          @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return logService.insertDelete(deleteRequest);
+        return logService.insertDelete(deleteRequest, currentUser);
     }
 }

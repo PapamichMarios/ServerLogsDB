@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Procedure2Results from './procedure2Results';
-import parser from '../utils/timestamp/parser';
-import getRequest from '../utils/requests/getRequest';
-import LoadingButton from '../utils/loading/loadingButton';
-import Loading from '../utils/loading/loading';
-import * as Constants from '../utils/constants';
+import Procedure1Results from './procedure1Results';
+import parser from '../../utils/timestamp/parser';
+import getRequest from '../../utils/requests/getRequest';
+import LoadingButton from '../../utils/loading/loadingButton';
+import Loading from '../../utils/loading/loading';
+import * as Constants from '../../utils/constants';
 
 import { Container, Row, Col, Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { FaCalendar } from 'react-icons/fa';
 
-export default class Procedure2 extends React.Component {
+export default class Procedure1 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,8 +18,6 @@ export default class Procedure2 extends React.Component {
         this.state = {
             dateFrom: '2014-10-24T20:36:00',
             dateTo: '2019-10-24T20:36:00',
-
-            type: 'access',
 
             results: [],
 
@@ -45,30 +43,27 @@ export default class Procedure2 extends React.Component {
         const from = parser(this.state.dateFrom);
         const to = parser(this.state.dateTo);
 
-        const type = this.state.type;
-
         //fetch procedure
         const url = this.props.action
-            + 'from=' + from[0] + ' ' + from[1]
-            + '&to=' + to[0] + ' ' + to[1]
-            + '&type=' + type;
+                    + 'from=' + from[0] + ' ' + from[1]
+                    + '&to=' + to[0] + ' ' + to[1];
 
         getRequest(url)
-            .then(response => {
+        .then(response => {
 
-                console.log(response);
-                if(!response.error) {
-                    this.setState({
-                        results: response.result
-                    }, () => {
-                        setTimeout( () => {
-                            this.setState({
-                                loading: false
-                            });
-                        }, Constants.TIMEOUT_DURATION);
-                    });
-                }
-            })
+            console.log(response);
+            if(!response.error) {
+                this.setState({
+                    results: response.result
+                }, () => {
+                    setTimeout( () => {
+                        this.setState({
+                            loading: false
+                        });
+                    }, Constants.TIMEOUT_DURATION);
+                });
+            }
+        })
 
     }
 
@@ -78,12 +73,14 @@ export default class Procedure2 extends React.Component {
                 <Row>
                     <Col md={{span: '6', offset: '3'}}>
                         <Card border="dark">
-                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Procedure 2 </Card.Header>
+                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Procedure 1 </Card.Header>
 
                             <Card.Body>
 
                                 <Card.Text>
-                                    2. Find the total logs per day for a specific action type and time range.
+                                  1. Find the total logs per type that were created within a specified time range
+                                  and sort them in a descending order. Please note that individual files may log
+                                  actions of more than one type.
                                 </Card.Text>
 
                                 <Form
@@ -131,25 +128,6 @@ export default class Procedure2 extends React.Component {
                                         </Col>
                                     </Form.Group>
 
-                                    <Form.Group as={Row}>
-                                        <Form.Label column md="4"> <b>type:</b> </Form.Label>
-
-                                        <Col md={8}>
-                                            <InputGroup>
-                                                <Form.Control
-                                                    type="string"
-                                                    step="1"
-                                                    name="type"
-                                                    onChange={this.onChange}
-                                                    placeholder="access"
-                                                />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text> <FaCalendar/> </InputGroup.Text>
-                                                </InputGroup.Append>
-                                            </InputGroup>
-                                        </Col>
-                                    </Form.Group>
-
                                     {(this.state.loading) ? (
                                         <Button variant="dark" block disabled>
                                             <b> Loading </b>
@@ -157,8 +135,8 @@ export default class Procedure2 extends React.Component {
                                         </Button>
                                     ) : (
                                         <Button type="submit" variant="dark" block>
-                                            <b> Submit </b>
-                                        </Button>
+                                             <b> Submit </b>
+                                         </Button>
                                     )}
 
                                 </Form>
@@ -176,7 +154,7 @@ export default class Procedure2 extends React.Component {
                 {this.state.loading ? (
                     <Loading />
                 ) : (
-                    <Procedure2Results results={this.state.results} />
+                    <Procedure1Results results={this.state.results} />
                 )}
 
             </Container>
@@ -184,7 +162,7 @@ export default class Procedure2 extends React.Component {
     }
 }
 
-Procedure2.defaultProps = {
+Procedure1.defaultProps = {
     method: 'GET',
-    action: '/executeProcedure2?'
+    action: '/executeProcedure1?'
 }

@@ -171,7 +171,7 @@ export default class Access extends React.Component {
                                         <Col>
                                             <Form.Control
                                                 type="number"
-                                                name="resource"
+                                                name="size"
                                                 onChange={this.onChange}
                                             />
                                         </Col>

@@ -1,6 +1,6 @@
 package com.dit.SystemDB.model;
 
-import com.dit.SystemDB.request.Received;
+import com.dit.SystemDB.request.ReceivedRequest;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class HdfsLogs {
     private Long id;
 
     @Column(name="size")
-    private int size;
+    private Long size = null;
 
     // shared pk with log
     @OneToOne
@@ -30,7 +30,7 @@ public class HdfsLogs {
     @OneToMany(mappedBy = "hdfsLogs", cascade = CascadeType.ALL)
     private List<Destinations> destinations = new ArrayList<>();
 
-    public HdfsLogs(Long id, int size, Log log, List<Blocks> blocks, List<Destinations> destinations) {
+    public HdfsLogs(Long id, Long size, Log log, List<Blocks> blocks, List<Destinations> destinations) {
         this.id = id;
         this.size = size;
         this.log = log;
@@ -42,8 +42,8 @@ public class HdfsLogs {
 
     }
 
-    public HdfsLogs(Received hdfsDataRequest) {
-        this.size = size;
+    public HdfsLogs(ReceivedRequest receivedRequest) {
+        this.size = receivedRequest.getSize();
     }
 
     public Long getId() {
@@ -54,11 +54,11 @@ public class HdfsLogs {
         this.id = id;
     }
 
-    public int getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 

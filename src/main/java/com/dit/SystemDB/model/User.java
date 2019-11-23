@@ -30,26 +30,35 @@ public class User {
     @NotEmpty(message="Please provide a password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @Column(name="address")
+    private String address;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToMany(mappedBy = "users")
+    private Set<Query> queries = new HashSet<>();
+
     public User () {}
 
-    public User(Long id, @NotEmpty(message = "Please provide a username") String username, @Email(message = "Please provide a valid e-mail") @NotEmpty(message = "Please provide an e-mail") String email, @NotEmpty(message = "Please provide a password") String password, Set<Role> roles) {
+    public User(Long id, @NotEmpty(message = "Please provide a username") String username, @Email(message = "Please provide a valid e-mail") @NotEmpty(message = "Please provide an e-mail") String email, @NotEmpty(message = "Please provide a password") String password, String address, Set<Role> roles, Set<Query> queries) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.address = address;
         this.roles = roles;
+        this.queries = queries;
     }
 
     public User(SignUpRequest signUpRequest){
         this.username = signUpRequest.getUsername();
         this.email = signUpRequest.getEmail();
         this.password = signUpRequest.getPassword();
+        this.address = signUpRequest.getAddress();
     }
 
     public Long getId() {
@@ -93,4 +102,20 @@ public class User {
     }
 
     public void addRole(Role role) { this.roles.add(role); }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Set<Query> getQueries() {
+        return queries;
+    }
+
+    public void setQueries(Set<Query> queries) {
+        this.queries = queries;
+    }
 }

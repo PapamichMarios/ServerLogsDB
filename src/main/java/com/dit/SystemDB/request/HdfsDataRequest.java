@@ -20,20 +20,10 @@ public class HdfsDataRequest {
     @NotNull
     private String block_id;
 
-    private int size;
-
     @NotNull
     private String destination_ip;
 
     public HdfsDataRequest() { }
-
-    public HdfsDataRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, int size, @NotNull String destination_ip) {
-        this.timestamp = timestamp;
-        this.source_ip = source_ip;
-        this.block_id = block_id;
-        this.size = size;
-        this.destination_ip = destination_ip;
-    }
 
     public HdfsDataRequest(@NotNull Date timestamp, @NotNull String source_ip, @NotNull String block_id, @NotNull String destination_ip) {
         this.timestamp = timestamp;
@@ -64,14 +54,6 @@ public class HdfsDataRequest {
 
     public void setBlock_id(String block_id) {
         this.block_id = block_id;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public String getDestination_ip() {
