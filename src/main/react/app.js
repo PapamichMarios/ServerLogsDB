@@ -55,20 +55,23 @@ class App extends React.Component {
                     <Route exact path="/signup"             component={SignUp} />
                     <Route exact path="/login"              component={LogIn} />
 
-                    <Route exact path="/insert-log"         render={ () => isAuthenticated() ? <Insert />  : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert-log"         render={ () => isAuthenticated() ? <Insert />       : <Redirect to="/unauthorized" /> } />
 
                     {/* procedures */}
-                    <Route exact path="/procedure1"         render={ () => isAuthenticated() ? <Procedure1 />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/procedure2"         render={ () => isAuthenticated() ? <Procedure2 />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/procedure3"         render={ () => isAuthenticated() ? <Procedure3 />  : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/procedure1"         render={ () => isAuthenticated() ? <Procedure1 />   : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/procedure2"         render={ () => isAuthenticated() ? <Procedure2 />   : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/procedure3"         render={ () => isAuthenticated() ? <Procedure3 />   : <Redirect to="/unauthorized" /> } />
 
                     {/* insert logs */}
-                    <Route exact path="/insert/access"      render={ () => isAuthenticated() ? <Access />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/insert/received"    render={ () => isAuthenticated() ? <Received />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/insert/receiving"   render={ () => isAuthenticated() ? <Receiving />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/insert/served"      render={ () => isAuthenticated() ? <Served />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/insert/replicate"   render={ () => isAuthenticated() ? <Replicate />  : <Redirect to="/unauthorized" /> } />
-                    <Route exact path="/insert/delete"      render={ () => isAuthenticated() ? <Delete />  : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/access"      render={ () => isAuthenticated() ? <Access />       : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/received"    render={ () => isAuthenticated() ? <Received />     : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/receiving"   render={ () => isAuthenticated() ? <Receiving />    : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/served"      render={ () => isAuthenticated() ? <Served />       : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/replicate"   render={ () => isAuthenticated() ? <Replicate />    : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/insert/delete"      render={ () => isAuthenticated() ? <Delete />       : <Redirect to="/unauthorized" /> } />
+
+                    {/* search ips */}
+                    <Route exact path="/search-ip"          render={ () => isAuthenticated() ? <Search />       : <Redirect to="/unauthorized" /> } />
 
                     <Route exact path="/unauthorized"       component={Page401} />
                 </Switch>
