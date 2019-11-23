@@ -24,4 +24,20 @@ public class ProcedureController {
 
         return procedureService.getProcedure1(from, to);
     }
+
+    @GetMapping(path = "/executeProcedure2")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> getProcedure2(@RequestParam("from") @DateTimeFormat(pattern="yyyy-MM-dd") Date from,
+                                           @RequestParam("to")   @DateTimeFormat(pattern="yyyy-MM-dd") Date to,
+                                           @RequestParam("type") String type) {
+
+        return procedureService.getProcedure2(from, to, type);
+    }
+
+    @GetMapping(path = "/executeProcedure3")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> getProcedure3(@RequestParam("day") @DateTimeFormat(pattern="yyyy-MM-dd") Date day) {
+
+        return procedureService.getProcedure3(day);
+    }
 }

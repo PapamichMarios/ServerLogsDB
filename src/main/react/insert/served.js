@@ -8,7 +8,7 @@ import * as Constants from '../utils/constants';
 
 import { Container, Row, Col, Card, Form, InputGroup, Button, Alert } from 'react-bootstrap';
 
-export default class Replicate extends React.Component {
+export default class Served extends React.Component {
 
     constructor(props) {
         super(props);
@@ -57,23 +57,23 @@ export default class Replicate extends React.Component {
         };
 
         postRequest(this.props.action, bodyObj)
-        .then(response => {
+            .then(response => {
 
-            if(response.error) {
-                this.setState({
-                    hasError: true,
-                    errorMsg: response.message,
-                    loading:false
-                });
-            } else {
-                this.setState({
-                    success: true,
-                    successMsg: response.message,
-                    loading: false
-                });
-            }
-        })
-        .catch(error => console.error('Error:' , error));
+                if(response.error) {
+                    this.setState({
+                        hasError: true,
+                        errorMsg: response.message,
+                        loading:false
+                    });
+                } else {
+                    this.setState({
+                        success: true,
+                        successMsg: response.message,
+                        loading: false
+                    });
+                }
+            })
+            .catch(error => console.error('Error:' , error));
 
     }
 
@@ -83,7 +83,7 @@ export default class Replicate extends React.Component {
                 <Row>
                     <Col>
                         <Card>
-                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Insert Replicate Log </Card.Header>
+                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Insert Served Log </Card.Header>
 
                             <Card.Body>
                                 <Form
@@ -180,7 +180,7 @@ export default class Replicate extends React.Component {
     }
 }
 
-Replicate.defaultProps = {
+Served.defaultProps = {
     method: 'POST',
-    action: '/insertReplicate'
+    action: '/insertServed'
 };

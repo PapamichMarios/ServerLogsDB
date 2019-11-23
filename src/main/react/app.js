@@ -9,9 +9,15 @@ import LogIn from './login';
 import Insert from './insert/insert';
 import Access from './insert/access';
 import Replicate from './insert/replicate';
+import Delete from './insert/delete';
+import Receiving from './insert/receiving';
+import Received from './insert/received';
+import Served from './insert/served';
 
 // procedures
 import Procedure1 from './procedure1/procedure1';
+import Procedure2 from './procedure1/procedure2';
+import Procedure3 from './procedure1/procedure3';
 
 import { BrowserRouter as Router, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
@@ -49,11 +55,16 @@ class App extends React.Component {
 
                     {/* procedures */}
                     <Route exact path="/procedure1" component={Procedure1} />
+                    <Route exact path="/procedure2" component={Procedure2} />
+                    <Route exact path="/procedure3" component={Procedure3} />
 
                     {/* insert logs */}
                     <Route exact path="/insert/access" component={Access} />
-
+                    <Route exact path="/insert/received" component={Received} />
+                    <Route exact path="/insert/receiving" component={Receiving} />
+                    <Route exact path="/insert/served" component={Served} />
                     <Route exact path="/insert/replicate" component={Replicate} />
+                    <Route exact path="/insert/delete" component={Delete} />
                 </Switch>
             </div>
         );

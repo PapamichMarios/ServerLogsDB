@@ -2,6 +2,7 @@ package com.dit.SystemDB.model;
 
 import com.dit.SystemDB.request.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +12,8 @@ import java.util.Date;
 public class Log {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name="kaugen" , strategy="increment")
+    @GeneratedValue(generator="kaugen")
     @Column(name = "log_id")
     private Long id;
 
