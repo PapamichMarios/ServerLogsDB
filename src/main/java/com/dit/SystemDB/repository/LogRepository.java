@@ -24,4 +24,10 @@ public interface LogRepository extends JpaRepository<Log, Long> {
 
     @Query(nativeQuery = true, value="SELECT * FROM log_db.function3(:day )")
     List<Object[]> function3(@Param("day") Date day);
+
+    @Query(nativeQuery = true, value="SELECT log_id, source_ip FROM log_db.logs WHERE source_ip = :ip")
+    List<Object[]> source(@Param("ip") String ip);
+
+    @Query(nativeQuery = true, value="SELECT log_id, destination FROM log_db.destinations WHERE destination = (:ip)")
+    List<Object[]> dest(@Param("ip") String ip);
 }

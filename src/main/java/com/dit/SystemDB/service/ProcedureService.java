@@ -2,9 +2,7 @@ package com.dit.SystemDB.service;
 
 import com.dit.SystemDB.model.Log;
 import com.dit.SystemDB.repository.LogRepository;
-import com.dit.SystemDB.response.Procedure1Response;
-import com.dit.SystemDB.response.Procedure2Response;
-import com.dit.SystemDB.response.Procedure3Response;
+import com.dit.SystemDB.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -52,5 +50,30 @@ public class ProcedureService {
         }
 
         return ResponseEntity.ok(new Procedure3Response(result));
+    }
+
+    public ResponseEntity<?> getSource(String ip) {
+
+        // find all logs with source ip = ip
+        List<Object[]> result = logRepository.source(ip);
+        System.out.print(ip);
+        System.out.print(result);
+        if (result == null) {
+            return ResponseEntity.ok(new SourceResponse());
+        }
+
+        return ResponseEntity.ok(new SourceResponse(result));
+    }
+
+    public ResponseEntity<?> getDest(String ip) {
+
+        // find all logs with source ip = ip
+        List<Object[]> result = logRepository.dest(ip);
+
+        if (result == null) {
+            return ResponseEntity.ok(new destResponse());
+        }
+
+        return ResponseEntity.ok(new destResponse(result));
     }
 }

@@ -40,4 +40,19 @@ public class ProcedureController {
 
         return procedureService.getProcedure3(day);
     }
+
+    @GetMapping(path = "/executeSearchSource")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> getSource(@RequestParam("ip")  String ip) {
+
+        return procedureService.getSource(ip);
+    }
+
+    @GetMapping(path = "/executeSearchDest")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> getDest(@RequestParam("ip")  String ip) {
+
+        return procedureService.getDest(ip);
+    }
+
 }

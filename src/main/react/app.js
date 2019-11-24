@@ -19,6 +19,9 @@ import Procedure1 from './procedures/procedure1/procedure1';
 import Procedure2 from './procedures/procedure2/procedure2';
 import Procedure3 from './procedures/procedure3/procedure3';
 
+import SearchSource from './procedures/search/search';
+import SearchDest from './procedures/search/destsearch';
+
 import Page401 from './errors/error401/error401';
 import isAuthenticated from './utils/authentication/isAuthenticated';
 
@@ -71,7 +74,8 @@ class App extends React.Component {
                     <Route exact path="/insert/delete"      render={ () => isAuthenticated() ? <Delete />       : <Redirect to="/unauthorized" /> } />
 
                     {/* search ips */}
-                    <Route exact path="/search-ip"          render={ () => isAuthenticated() ? <Search />       : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/SearchSource"          render={ () => isAuthenticated() ? <SearchSource />       : <Redirect to="/unauthorized" /> } />
+                    <Route exact path="/SearchDestination"          render={ () => isAuthenticated() ? <SearchDest />       : <Redirect to="/unauthorized" /> } />
 
                     <Route exact path="/unauthorized"       component={Page401} />
                 </Switch>
