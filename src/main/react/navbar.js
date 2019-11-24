@@ -41,20 +41,12 @@ class NavBar extends React.Component {
                   </NavItem>
 
                   <NavItem className="button-margin-left">
-                    <Link to="/SearchSource">
-                        <Button title="Search Source" variant="dark" style={{borderRadius: '12px'}}>
-                            <b>Search IP (Source)</b>
+                    <Link to="/search-ip">
+                        <Button title="Search IP" variant="dark" style={{borderRadius: '12px'}}>
+                            <b>Search IP</b>
                         </Button>
                     </Link>
                   </NavItem>
-
-                    <NavItem className="button-margin-left">
-                        <Link to="/SearchDestination">
-                            <Button title="Search Dest" variant="dark" style={{borderRadius: '12px'}}>
-                                <b>Search IP (Dest)</b>
-                            </Button>
-                        </Link>
-                    </NavItem>
                 </Nav>
             );
         } else {

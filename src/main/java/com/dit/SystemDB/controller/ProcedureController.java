@@ -49,16 +49,18 @@ public class ProcedureController {
 
     @GetMapping(path = "/executeSearchSource")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> getSource(@RequestParam("ip")  String ip) {
+    public ResponseEntity<?> getSource(@RequestParam("ip")  String ip,
+                                       @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return procedureService.getSource(ip);
+        return procedureService.getSource(ip, currentUser);
     }
 
     @GetMapping(path = "/executeSearchDest")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> getDest(@RequestParam("ip")  String ip) {
+    public ResponseEntity<?> getDest(@RequestParam("ip")  String ip,
+                                     @Valid @CurrentUser UserDetailsImpl currentUser) {
 
-        return procedureService.getDest(ip);
+        return procedureService.getDest(ip, currentUser);
     }
 
 }

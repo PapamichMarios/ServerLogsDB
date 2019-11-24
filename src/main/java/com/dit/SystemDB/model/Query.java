@@ -27,21 +27,25 @@ public class Query {
     private Set<User> users  = new HashSet<>();
 
     public Query(Date from, Date to, String type) {
-        this.log = "Performed Procedure 2 "
+        this.log = "Performed PROCEDURE_2 "
                 + "from: " + from
                 + "to: " + to
                 + "type: " + type;
     }
 
     public Query(Date from, Date to) {
-        this.log = "Performed Procedure 1 "
+        this.log = "Performed PROCEDURE_1 "
                 + "from: " + from
                 + "to: " + to;
     }
 
     public Query(Date day) {
-        this.log = "Performed Procedure 3 "
+        this.log = "Performed PROCEDURE_3 "
                 + "day: " + day;
+    }
+
+    public Query(String ip, String type) {
+        this.log = "Searched " + type + ": " + ip;
     }
 
     public Query(AccessRequest accessRequest) {

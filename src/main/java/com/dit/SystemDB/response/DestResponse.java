@@ -2,13 +2,13 @@ package com.dit.SystemDB.response;
 
 import java.util.List;
 
-public class destResponse {
+public class DestResponse {
 
         private List<Object[]> result;
 
-        public destResponse() { }
+        public DestResponse() { }
 
-        public destResponse(List<Object[]> result) {
+        public DestResponse(List<Object[]> result) {
             this.result = result;
         }
 

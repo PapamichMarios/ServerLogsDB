@@ -1,7 +1,6 @@
 package com.dit.SystemDB.service;
 
 import com.dit.SystemDB.exception.ResourceNotFoundException;
-import com.dit.SystemDB.model.Log;
 import com.dit.SystemDB.model.Query;
 import com.dit.SystemDB.model.User;
 import com.dit.SystemDB.repository.LogRepository;
@@ -107,12 +106,25 @@ public class ProcedureService {
         return ResponseEntity.ok(new Procedure3Response(result));
     }
 
-    public ResponseEntity<?> getSource(String ip) {
+    public ResponseEntity<?> getSource(String ip, UserDetailsImpl currentUser) {
+
+        //check the user issuing
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         // find all logs with source ip = ip
         List<Object[]> result = logRepository.source(ip);
-        System.out.print(ip);
-        System.out.print(result);
+
+        // save the action to query table
+        Query query = new Query(ip, "SOURCE_IP");
+
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        queryRepository.save(query);
+
         if (result == null) {
             return ResponseEntity.ok(new SourceResponse());
         }
@@ -120,15 +132,29 @@ public class ProcedureService {
         return ResponseEntity.ok(new SourceResponse(result));
     }
 
-    public ResponseEntity<?> getDest(String ip) {
+    public ResponseEntity<?> getDest(String ip, UserDetailsImpl currentUser) {
+
+        //check the user issuing
+        Long userId = currentUser.getId();
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
         // find all logs with source ip = ip
         List<Object[]> result = logRepository.dest(ip);
 
+        // save the action to query table
+        Query query = new Query(ip, "DESTINATION_IP");
+
+        user.setQueries(Collections.singleton(query));
+        query.setUsers(Collections.singleton(user));
+
+        queryRepository.save(query);
+
         if (result == null) {
-            return ResponseEntity.ok(new destResponse());
+            return ResponseEntity.ok(new DestResponse());
         }
 
-        return ResponseEntity.ok(new destResponse(result));
+        return ResponseEntity.ok(new DestResponse(result));
     }
 }

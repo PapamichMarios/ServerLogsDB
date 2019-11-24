@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DestSearchResults from './destsearchResults';
+import SearchResults from './searchSourceResults';
 import parser from '../../utils/timestamp/parser';
 import getRequest from '../../utils/requests/getRequest';
 import LoadingButton from '../../utils/loading/loadingButton';
@@ -10,7 +10,7 @@ import * as Constants from '../../utils/constants';
 import { Container, Row, Col, Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { FaCalendar, FaHistory } from 'react-icons/fa';
 
-export default class SearchDest extends React.Component {
+export default class SearchSource extends React.Component {
 
     constructor(props) {
         super(props);
@@ -70,12 +70,12 @@ export default class SearchDest extends React.Component {
                 <Row>
                     <Col md={{span: '6', offset: '3'}}>
                         <Card border="dark">
-                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Search By IP </Card.Header>
+                            <Card.Header as="h3" className="text-center bg-dark" style={{color:'white'}}> Search By Source IP </Card.Header>
 
                             <Card.Body>
 
                                 <Card.Text>
-                                    Search by destination  IP
+                                    Search by source  IP
                                 </Card.Text>
 
                                 <Form
@@ -128,7 +128,7 @@ export default class SearchDest extends React.Component {
                 {this.state.loading ? (
                     <Loading />
                 ) : (
-                    <DestSearchResults results={this.state.results} />
+                    <SearchResults results={this.state.results} />
                 )}
 
             </Container>
@@ -136,7 +136,7 @@ export default class SearchDest extends React.Component {
     }
 }
 
-SearchDest.defaultProps = {
+SearchSource.defaultProps = {
     method: 'GET',
-    action: '/executeSearchDest?'
+    action: '/executeSearchSource?'
 }
