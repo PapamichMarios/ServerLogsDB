@@ -36,5 +36,23 @@ https://localhost:8080/
 
 # Sample Snapshots
 
+- Homepage
+![alt text](Wiki%20Photos/homepage.png "Homepage")
+
+- Sign Up
+![alt text](Wiki%20Photos/signup.png "Sign Up")
+
+- Log In
+![alt text](Wiki%20Photos/login.png "Log In")
+![alt text](Wiki%20Photos/homepage_logged.png "Homepage Logged In")
+
+- Insert any type of Log
+![alt text](Wiki%20Photos/insert_log.png "Insert Log")
+![alt text](Wiki%20Photos/insertion_example.png "Example of Insert")
+
+- Execute server procedures
+![alt text](Wiki%20Photos/procedure1_before.png "Procedure 1 Before Results")
+![alt text](Wiki%20Photos/procedure1_after.png "Procedure 1 After Results")
+
 # Github Link
 [ServerLogs](https://github.com/PapamichMarios/ServerLogs)
