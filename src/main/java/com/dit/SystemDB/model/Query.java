@@ -3,6 +3,7 @@ package com.dit.SystemDB.model;
 import com.dit.SystemDB.request.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,24 @@ public class Query {
             joinColumns = @JoinColumn(name = "query_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users  = new HashSet<>();
+
+    public Query(Date from, Date to, String type) {
+        this.log = "Performed Procedure 2 "
+                + "from: " + from
+                + "to: " + to
+                + "type: " + type;
+    }
+
+    public Query(Date from, Date to) {
+        this.log = "Performed Procedure 1 "
+                + "from: " + from
+                + "to: " + to;
+    }
+
+    public Query(Date day) {
+        this.log = "Performed Procedure 3 "
+                + "day: " + day;
+    }
 
     public Query(AccessRequest accessRequest) {
         this.log = "Inserted log of type ACCESS "
