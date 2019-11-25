@@ -11,7 +11,7 @@ import java.util.List;
 public class HdfsLogs {
 
     @Id
-    @Column(name="log_id")
+    @Column(name="log_id", nullable = false)
     private Long id;
 
     @Column(name="size")

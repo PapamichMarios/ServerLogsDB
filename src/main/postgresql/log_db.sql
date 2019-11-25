@@ -477,8 +477,8 @@ ALTER TABLE log_db.access_log OWNER TO postgres;
 --
 
 CREATE TABLE log_db.blocks (
-    block_id character varying(255) NOT NULL,
-    log_id bigint NOT NULL
+    log_id bigint NOT NULL,
+    block_id character varying(255) NOT NULL
 );
 
 

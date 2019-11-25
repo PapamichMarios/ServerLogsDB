@@ -17,6 +17,7 @@ export default class Received extends React.Component {
             timestamp: '',
             source_ip: '',
 
+            size: '',
             block_id: '',
             destination_ip: '',
 
@@ -50,6 +51,7 @@ export default class Received extends React.Component {
             timestamp: timestamp[0] + ' ' + timestamp[1],
             source_ip: this.state.source_ip,
             block_id: this.state.block_id,
+            size: this.state.size,
             destination_ip: this.state.destination_ip
         };
 
@@ -106,6 +108,17 @@ export default class Received extends React.Component {
                                             <Form.Control
                                                 type="text"
                                                 name="source_ip"
+                                                onChange={this.onChange}
+                                            />
+                                        </Col>
+                                    </Form.Group>
+
+                                    <Form.Group as={Row}>
+                                        <Form.Label column md="6"> <b>Size:</b> </Form.Label>
+                                        <Col>
+                                            <Form.Control
+                                                type="number"
+                                                name="size"
                                                 onChange={this.onChange}
                                             />
                                         </Col>

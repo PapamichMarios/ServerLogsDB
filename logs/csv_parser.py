@@ -21,7 +21,7 @@ def monthToNum(shortMonth):
 
 def main():
     # create csv based on schema
-    log_id = 0;
+    log_id = 1;
     with open("logs.csv", "w") as logs_csv:
         log_writer = csv.writer(logs_csv, delimiter="\t")
 

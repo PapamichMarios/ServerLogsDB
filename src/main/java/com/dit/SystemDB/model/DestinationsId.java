@@ -7,10 +7,10 @@ import java.io.Serializable;
 @Embeddable
 public class DestinationsId implements Serializable {
 
-    @Column(name="log_id")
+    @Column(name="log_id", nullable = false)
     private Long log_id;
 
-    @Column(name="destination")
+    @Column(name="destination", nullable = false)
     private String destination;
 
     public DestinationsId() {

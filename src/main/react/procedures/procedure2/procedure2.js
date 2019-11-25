@@ -56,7 +56,6 @@ export default class Procedure2 extends React.Component {
         getRequest(url)
             .then(response => {
 
-                console.log(response);
                 if(!response.error) {
                     this.setState({
                         results: response.result

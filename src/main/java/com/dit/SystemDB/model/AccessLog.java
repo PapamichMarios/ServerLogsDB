@@ -9,19 +9,19 @@ import javax.persistence.*;
 public class AccessLog {
 
     @Id
-    @Column(name="log_id")
+    @Column(name="log_id", nullable = false)
     private Long id;
 
-    @Column(name="user_id", length = 50)
+    @Column(name="user_id", length = 50, nullable = false)
     private String user_id;
 
-    @Column(name="http_method", length = 20)
+    @Column(name="http_method", length = 20, nullable = false)
     private String http_method;
 
-    @Column(columnDefinition = "TEXT",name="resource")
+    @Column(columnDefinition = "TEXT",name="resource", nullable = false)
     private String resource;
 
-    @Column(columnDefinition = "TEXT", name="http_response")
+    @Column(columnDefinition = "TEXT", name="http_response", nullable = false)
     private String http_response;
 
     @Column(name="size")

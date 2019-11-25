@@ -13,11 +13,11 @@ public class Query {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "query_id")
+    @Column(name = "query_id", nullable = false)
     private Long id;
 
 
-    @Column(columnDefinition = "TEXT", name="log")
+    @Column(columnDefinition = "TEXT", name="log", nullable = false)
     private String log;
 
     @ManyToMany(fetch = FetchType.LAZY)

@@ -7,10 +7,10 @@ import java.io.Serializable;
 @Embeddable
 public class BlocksId implements Serializable {
 
-    @Column(name="log_id")
+    @Column(name="log_id", nullable = false)
     private Long log_id;
 
-    @Column(name="block_id")
+    @Column(name="block_id", nullable = false)
     private String block_id;
 
     public BlocksId() {
