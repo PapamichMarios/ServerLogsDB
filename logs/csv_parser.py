@@ -81,21 +81,21 @@ def main():
                 stamp = "20"+ts[0:2]+"-"+ts[2:4]+"-"+ts[4:6]+" "+ts[6:8]+":"+ts[8:10]+":"+ts[10:12]
 
                 if (words[5] == "Received"):
-                    log_writer.writerow([log_id, words[9][1:], stamp, words[5]])
+                    log_writer.writerow([log_id, words[9][1:], stamp, "received"])
                     hdfs_writer.writerow([log_id, words[14]])
                     blocks_writer.writerow([log_id, words[7]])
                     destinations_writer.writerow([log_id, words[11][1:]])
                     log_id += 1
 
                 elif (words[5] == "Receiving"):
-                    log_writer.writerow([log_id, words[9][1:], stamp, words[5]])
+                    log_writer.writerow([log_id, words[9][1:], stamp, "receiving"])
                     hdfs_writer.writerow([log_id, 'NULL'])
                     blocks_writer.writerow([log_id, words[7]])
                     destinations_writer.writerow([log_id, words[11][1:]])
                     log_id += 1
 
                 elif (words[6] == "Served"):
-                    log_writer.writerow([log_id, words[5], stamp, words[6]])
+                    log_writer.writerow([log_id, words[5], stamp, "served"])
                     hdfs_writer.writerow([log_id, 'NULL'])
                     blocks_writer.writerow([log_id, words[8]])
                     destinations_writer.writerow([log_id, words[10][1:]])
