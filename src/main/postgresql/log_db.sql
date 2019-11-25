@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.5
--- Dumped by pg_dump version 11.5
+-- Dumped from database version 11.6 (Ubuntu 11.6-1.pgdg18.04+1)
+-- Dumped by pg_dump version 11.6 (Ubuntu 11.6-1.pgdg18.04+1)
 
--- Started on 2019-11-25 13:01:55
+-- Started on 2019-11-25 15:03:45 EET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 5 (class 2615 OID 17002)
+-- TOC entry 7 (class 2615 OID 33821)
 -- Name: log_db; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -29,7 +29,7 @@ CREATE SCHEMA log_db;
 ALTER SCHEMA log_db OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1255 OID 17366)
+-- TOC entry 212 (class 1255 OID 33822)
 -- Name: findbydest(character varying); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -44,7 +44,7 @@ $$;
 ALTER FUNCTION log_db.findbydest(ip character varying) OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1255 OID 17358)
+-- TOC entry 213 (class 1255 OID 33823)
 -- Name: findbysource(character varying); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -58,8 +58,8 @@ WHERE source_ip = ip$$;
 ALTER FUNCTION log_db.findbysource(ip character varying) OWNER TO postgres;
 
 --
--- TOC entry 2912 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3029 (class 0 OID 0)
+-- Dependencies: 213
 -- Name: FUNCTION findbysource(ip character varying); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -67,7 +67,7 @@ COMMENT ON FUNCTION log_db.findbysource(ip character varying) IS 'find logs by s
 
 
 --
--- TOC entry 211 (class 1255 OID 17003)
+-- TOC entry 214 (class 1255 OID 33824)
 -- Name: function1(timestamp without time zone, timestamp without time zone); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -84,8 +84,8 @@ $$;
 ALTER FUNCTION log_db.function1(time1 timestamp without time zone, time2 timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 2913 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3030 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: FUNCTION function1(time1 timestamp without time zone, time2 timestamp without time zone); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -93,7 +93,7 @@ COMMENT ON FUNCTION log_db.function1(time1 timestamp without time zone, time2 ti
 
 
 --
--- TOC entry 215 (class 1255 OID 17351)
+-- TOC entry 215 (class 1255 OID 33825)
 -- Name: function10(character varying); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -109,7 +109,7 @@ $$;
 ALTER FUNCTION log_db.function10(firefox_version character varying) OWNER TO postgres;
 
 --
--- TOC entry 2914 (class 0 OID 0)
+-- TOC entry 3031 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: FUNCTION function10(firefox_version character varying); Type: COMMENT; Schema: log_db; Owner: postgres
 --
@@ -118,7 +118,7 @@ COMMENT ON FUNCTION log_db.function10(firefox_version character varying) IS '10.
 
 
 --
--- TOC entry 212 (class 1255 OID 17005)
+-- TOC entry 216 (class 1255 OID 33826)
 -- Name: function11(character varying, timestamp without time zone, timestamp without time zone); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -135,8 +135,8 @@ $$;
 ALTER FUNCTION log_db.function11(http_method_in character varying, time1 timestamp without time zone, time2 timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 2915 (class 0 OID 0)
--- Dependencies: 212
+-- TOC entry 3032 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: FUNCTION function11(http_method_in character varying, time1 timestamp without time zone, time2 timestamp without time zone); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -144,7 +144,7 @@ COMMENT ON FUNCTION log_db.function11(http_method_in character varying, time1 ti
 
 
 --
--- TOC entry 214 (class 1255 OID 17006)
+-- TOC entry 217 (class 1255 OID 33827)
 -- Name: function12(timestamp without time zone, timestamp without time zone, character varying, character varying); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -172,8 +172,8 @@ $$;
 ALTER FUNCTION log_db.function12(time1 timestamp without time zone, time2 timestamp without time zone, http1 character varying, http2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 2916 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3033 (class 0 OID 0)
+-- Dependencies: 217
 -- Name: FUNCTION function12(time1 timestamp without time zone, time2 timestamp without time zone, http1 character varying, http2 character varying); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -181,7 +181,7 @@ COMMENT ON FUNCTION log_db.function12(time1 timestamp without time zone, time2 t
 
 
 --
--- TOC entry 216 (class 1255 OID 17007)
+-- TOC entry 218 (class 1255 OID 33828)
 -- Name: function13(timestamp without time zone, timestamp without time zone); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -201,8 +201,8 @@ $$;
 ALTER FUNCTION log_db.function13(time1 timestamp without time zone, time2 timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 2917 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3034 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: FUNCTION function13(time1 timestamp without time zone, time2 timestamp without time zone); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -210,7 +210,7 @@ COMMENT ON FUNCTION log_db.function13(time1 timestamp without time zone, time2 t
 
 
 --
--- TOC entry 234 (class 1255 OID 17347)
+-- TOC entry 219 (class 1255 OID 33829)
 -- Name: function2(timestamp without time zone, timestamp without time zone, character varying); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -228,8 +228,8 @@ $$;
 ALTER FUNCTION log_db.function2(day1 timestamp without time zone, day2 timestamp without time zone, type_in character varying) OWNER TO postgres;
 
 --
--- TOC entry 2918 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3035 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: FUNCTION function2(day1 timestamp without time zone, day2 timestamp without time zone, type_in character varying); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -237,7 +237,7 @@ COMMENT ON FUNCTION log_db.function2(day1 timestamp without time zone, day2 time
 
 
 --
--- TOC entry 229 (class 1255 OID 17009)
+-- TOC entry 233 (class 1255 OID 33830)
 -- Name: function3(timestamp without time zone); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -265,8 +265,8 @@ $$;
 ALTER FUNCTION log_db.function3(time_in timestamp without time zone) OWNER TO postgres;
 
 --
--- TOC entry 2919 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3036 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: FUNCTION function3(time_in timestamp without time zone); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -274,7 +274,7 @@ COMMENT ON FUNCTION log_db.function3(time_in timestamp without time zone) IS '3.
 
 
 --
--- TOC entry 230 (class 1255 OID 17010)
+-- TOC entry 234 (class 1255 OID 33831)
 -- Name: function4(date, date); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -297,7 +297,7 @@ LIMIT 5$$;
 ALTER FUNCTION log_db.function4(date1 date, date2 date) OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1255 OID 17011)
+-- TOC entry 235 (class 1255 OID 33832)
 -- Name: function5(); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -314,8 +314,8 @@ $$;
 ALTER FUNCTION log_db.function5() OWNER TO postgres;
 
 --
--- TOC entry 2920 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3037 (class 0 OID 0)
+-- Dependencies: 235
 -- Name: FUNCTION function5(); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -323,7 +323,7 @@ COMMENT ON FUNCTION log_db.function5() IS '5. Find the referers (if any) that ha
 
 
 --
--- TOC entry 231 (class 1255 OID 17012)
+-- TOC entry 236 (class 1255 OID 33833)
 -- Name: function6(); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -349,8 +349,8 @@ $$;
 ALTER FUNCTION log_db.function6() OWNER TO postgres;
 
 --
--- TOC entry 2921 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3038 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: FUNCTION function6(); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -358,7 +358,7 @@ COMMENT ON FUNCTION log_db.function6() IS '6. Find the 2nd–most–common resou
 
 
 --
--- TOC entry 235 (class 1255 OID 17350)
+-- TOC entry 237 (class 1255 OID 33834)
 -- Name: function7(double precision); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -374,8 +374,8 @@ $$;
 ALTER FUNCTION log_db.function7(x double precision) OWNER TO postgres;
 
 --
--- TOC entry 2922 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3039 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: FUNCTION function7(x double precision); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -383,7 +383,7 @@ COMMENT ON FUNCTION log_db.function7(x double precision) IS '7. Find the access 
 
 
 --
--- TOC entry 232 (class 1255 OID 17014)
+-- TOC entry 238 (class 1255 OID 33835)
 -- Name: function8(); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -406,8 +406,8 @@ $$;
 ALTER FUNCTION log_db.function8() OWNER TO postgres;
 
 --
--- TOC entry 2923 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3040 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: FUNCTION function8(); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -415,7 +415,7 @@ COMMENT ON FUNCTION log_db.function8() IS '8. Find the blocks that have been rep
 
 
 --
--- TOC entry 213 (class 1255 OID 17015)
+-- TOC entry 220 (class 1255 OID 33836)
 -- Name: function9(); Type: FUNCTION; Schema: log_db; Owner: postgres
 --
 
@@ -439,8 +439,8 @@ $$;
 ALTER FUNCTION log_db.function9() OWNER TO postgres;
 
 --
--- TOC entry 2924 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3041 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: FUNCTION function9(); Type: COMMENT; Schema: log_db; Owner: postgres
 --
 
@@ -453,16 +453,16 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 17016)
+-- TOC entry 197 (class 1259 OID 33837)
 -- Name: access_log; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
 CREATE TABLE log_db.access_log (
     log_id bigint NOT NULL,
     user_id character varying(50),
-    http_method character varying(20),
-    resource text,
-    http_response text,
+    http_method character varying(20) NOT NULL,
+    resource text NOT NULL,
+    http_response text NOT NULL,
     size bigint,
     referer text,
     user_agent text
@@ -472,20 +472,20 @@ CREATE TABLE log_db.access_log (
 ALTER TABLE log_db.access_log OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 17022)
+-- TOC entry 198 (class 1259 OID 33843)
 -- Name: blocks; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
 CREATE TABLE log_db.blocks (
-    log_id bigint NOT NULL,
-    block_id character varying(255) NOT NULL
+    block_id character varying(255) NOT NULL,
+    log_id bigint NOT NULL
 );
 
 
 ALTER TABLE log_db.blocks OWNER TO postgres;
 
 --
--- TOC entry 198 (class 1259 OID 17025)
+-- TOC entry 199 (class 1259 OID 33846)
 -- Name: destinations; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
@@ -498,7 +498,7 @@ CREATE TABLE log_db.destinations (
 ALTER TABLE log_db.destinations OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 17028)
+-- TOC entry 200 (class 1259 OID 33849)
 -- Name: hdfs_logs; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
@@ -511,7 +511,7 @@ CREATE TABLE log_db.hdfs_logs (
 ALTER TABLE log_db.hdfs_logs OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 17342)
+-- TOC entry 201 (class 1259 OID 33852)
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: log_db; Owner: postgres
 --
 
@@ -526,7 +526,7 @@ CREATE SEQUENCE log_db.hibernate_sequence
 ALTER TABLE log_db.hibernate_sequence OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 17031)
+-- TOC entry 202 (class 1259 OID 33854)
 -- Name: logs; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
@@ -541,7 +541,7 @@ CREATE TABLE log_db.logs (
 ALTER TABLE log_db.logs OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 17034)
+-- TOC entry 203 (class 1259 OID 33857)
 -- Name: logs_log_id_seq; Type: SEQUENCE; Schema: log_db; Owner: postgres
 --
 
@@ -556,8 +556,8 @@ CREATE SEQUENCE log_db.logs_log_id_seq
 ALTER TABLE log_db.logs_log_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2925 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 3042 (class 0 OID 0)
+-- Dependencies: 203
 -- Name: logs_log_id_seq; Type: SEQUENCE OWNED BY; Schema: log_db; Owner: postgres
 --
 
@@ -565,20 +565,20 @@ ALTER SEQUENCE log_db.logs_log_id_seq OWNED BY log_db.logs.log_id;
 
 
 --
--- TOC entry 209 (class 1259 OID 17369)
+-- TOC entry 204 (class 1259 OID 33859)
 -- Name: queries; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
 CREATE TABLE log_db.queries (
     query_id bigint NOT NULL,
-    log text
+    log text NOT NULL
 );
 
 
 ALTER TABLE log_db.queries OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 17367)
+-- TOC entry 205 (class 1259 OID 33865)
 -- Name: queries_query_id_seq; Type: SEQUENCE; Schema: log_db; Owner: postgres
 --
 
@@ -593,8 +593,8 @@ CREATE SEQUENCE log_db.queries_query_id_seq
 ALTER TABLE log_db.queries_query_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2926 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 3043 (class 0 OID 0)
+-- Dependencies: 205
 -- Name: queries_query_id_seq; Type: SEQUENCE OWNED BY; Schema: log_db; Owner: postgres
 --
 
@@ -602,20 +602,20 @@ ALTER SEQUENCE log_db.queries_query_id_seq OWNED BY log_db.queries.query_id;
 
 
 --
--- TOC entry 202 (class 1259 OID 17036)
+-- TOC entry 206 (class 1259 OID 33867)
 -- Name: roles; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
 CREATE TABLE log_db.roles (
     id bigint NOT NULL,
-    name character varying(60)
+    name character varying(60) NOT NULL
 );
 
 
 ALTER TABLE log_db.roles OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 17039)
+-- TOC entry 207 (class 1259 OID 33870)
 -- Name: roles_id_seq; Type: SEQUENCE; Schema: log_db; Owner: postgres
 --
 
@@ -630,8 +630,8 @@ CREATE SEQUENCE log_db.roles_id_seq
 ALTER TABLE log_db.roles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2927 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 3044 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: log_db; Owner: postgres
 --
 
@@ -639,7 +639,7 @@ ALTER SEQUENCE log_db.roles_id_seq OWNED BY log_db.roles.id;
 
 
 --
--- TOC entry 210 (class 1259 OID 17378)
+-- TOC entry 208 (class 1259 OID 33872)
 -- Name: user_queries; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
@@ -652,7 +652,7 @@ CREATE TABLE log_db.user_queries (
 ALTER TABLE log_db.user_queries OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 17041)
+-- TOC entry 209 (class 1259 OID 33875)
 -- Name: user_roles; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
@@ -665,14 +665,14 @@ CREATE TABLE log_db.user_roles (
 ALTER TABLE log_db.user_roles OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 17044)
+-- TOC entry 210 (class 1259 OID 33878)
 -- Name: users; Type: TABLE; Schema: log_db; Owner: postgres
 --
 
 CREATE TABLE log_db.users (
     id bigint NOT NULL,
     email character varying(255) NOT NULL,
-    password character varying(255),
+    password character varying(255) NOT NULL,
     username character varying(255) NOT NULL,
     address character varying(255)
 );
@@ -681,7 +681,7 @@ CREATE TABLE log_db.users (
 ALTER TABLE log_db.users OWNER TO postgres;
 
 --
--- TOC entry 206 (class 1259 OID 17050)
+-- TOC entry 211 (class 1259 OID 33884)
 -- Name: users_id_seq; Type: SEQUENCE; Schema: log_db; Owner: postgres
 --
 
@@ -696,8 +696,8 @@ CREATE SEQUENCE log_db.users_id_seq
 ALTER TABLE log_db.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2928 (class 0 OID 0)
--- Dependencies: 206
+-- TOC entry 3045 (class 0 OID 0)
+-- Dependencies: 211
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: log_db; Owner: postgres
 --
 
@@ -705,7 +705,7 @@ ALTER SEQUENCE log_db.users_id_seq OWNED BY log_db.users.id;
 
 
 --
--- TOC entry 2747 (class 2604 OID 17052)
+-- TOC entry 2864 (class 2604 OID 33886)
 -- Name: logs log_id; Type: DEFAULT; Schema: log_db; Owner: postgres
 --
 
@@ -713,7 +713,7 @@ ALTER TABLE ONLY log_db.logs ALTER COLUMN log_id SET DEFAULT nextval('log_db.log
 
 
 --
--- TOC entry 2750 (class 2604 OID 17372)
+-- TOC entry 2865 (class 2604 OID 33887)
 -- Name: queries query_id; Type: DEFAULT; Schema: log_db; Owner: postgres
 --
 
@@ -721,7 +721,7 @@ ALTER TABLE ONLY log_db.queries ALTER COLUMN query_id SET DEFAULT nextval('log_d
 
 
 --
--- TOC entry 2748 (class 2604 OID 17053)
+-- TOC entry 2866 (class 2604 OID 33888)
 -- Name: roles id; Type: DEFAULT; Schema: log_db; Owner: postgres
 --
 
@@ -729,7 +729,7 @@ ALTER TABLE ONLY log_db.roles ALTER COLUMN id SET DEFAULT nextval('log_db.roles_
 
 
 --
--- TOC entry 2749 (class 2604 OID 17054)
+-- TOC entry 2867 (class 2604 OID 33889)
 -- Name: users id; Type: DEFAULT; Schema: log_db; Owner: postgres
 --
 
@@ -737,7 +737,7 @@ ALTER TABLE ONLY log_db.users ALTER COLUMN id SET DEFAULT nextval('log_db.users_
 
 
 --
--- TOC entry 2752 (class 2606 OID 17056)
+-- TOC entry 2869 (class 2606 OID 33891)
 -- Name: access_log access_log_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -746,7 +746,7 @@ ALTER TABLE ONLY log_db.access_log
 
 
 --
--- TOC entry 2754 (class 2606 OID 17058)
+-- TOC entry 2871 (class 2606 OID 33893)
 -- Name: blocks blocks_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -755,7 +755,7 @@ ALTER TABLE ONLY log_db.blocks
 
 
 --
--- TOC entry 2756 (class 2606 OID 17060)
+-- TOC entry 2873 (class 2606 OID 33895)
 -- Name: destinations destinations_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -764,7 +764,7 @@ ALTER TABLE ONLY log_db.destinations
 
 
 --
--- TOC entry 2758 (class 2606 OID 17062)
+-- TOC entry 2875 (class 2606 OID 33897)
 -- Name: hdfs_logs hdfs_logs_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -773,7 +773,7 @@ ALTER TABLE ONLY log_db.hdfs_logs
 
 
 --
--- TOC entry 2760 (class 2606 OID 17064)
+-- TOC entry 2877 (class 2606 OID 33899)
 -- Name: logs logs_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -782,7 +782,7 @@ ALTER TABLE ONLY log_db.logs
 
 
 --
--- TOC entry 2775 (class 2606 OID 17377)
+-- TOC entry 2880 (class 2606 OID 33901)
 -- Name: queries queries_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -791,7 +791,7 @@ ALTER TABLE ONLY log_db.queries
 
 
 --
--- TOC entry 2763 (class 2606 OID 17066)
+-- TOC entry 2882 (class 2606 OID 33903)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -800,7 +800,7 @@ ALTER TABLE ONLY log_db.roles
 
 
 --
--- TOC entry 2769 (class 2606 OID 17068)
+-- TOC entry 2890 (class 2606 OID 33905)
 -- Name: users uk_6dotkott2kjsp8vw4d0m25fb7; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -809,7 +809,7 @@ ALTER TABLE ONLY log_db.users
 
 
 --
--- TOC entry 2765 (class 2606 OID 17070)
+-- TOC entry 2884 (class 2606 OID 42249)
 -- Name: roles uk_nb4h0p6txrmfc0xbrd1kglp9t; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -818,7 +818,7 @@ ALTER TABLE ONLY log_db.roles
 
 
 --
--- TOC entry 2771 (class 2606 OID 17072)
+-- TOC entry 2892 (class 2606 OID 33909)
 -- Name: users uk_r43af9ap4edm43mmtq01oddj6; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -827,7 +827,7 @@ ALTER TABLE ONLY log_db.users
 
 
 --
--- TOC entry 2777 (class 2606 OID 17382)
+-- TOC entry 2886 (class 2606 OID 33911)
 -- Name: user_queries user_queries_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -836,7 +836,7 @@ ALTER TABLE ONLY log_db.user_queries
 
 
 --
--- TOC entry 2767 (class 2606 OID 17074)
+-- TOC entry 2888 (class 2606 OID 33913)
 -- Name: user_roles user_roles_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -845,7 +845,7 @@ ALTER TABLE ONLY log_db.user_roles
 
 
 --
--- TOC entry 2773 (class 2606 OID 17076)
+-- TOC entry 2894 (class 2606 OID 33915)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -854,7 +854,7 @@ ALTER TABLE ONLY log_db.users
 
 
 --
--- TOC entry 2761 (class 1259 OID 17348)
+-- TOC entry 2878 (class 1259 OID 33916)
 -- Name: timestamp_index; Type: INDEX; Schema: log_db; Owner: postgres
 --
 
@@ -862,7 +862,7 @@ CREATE INDEX timestamp_index ON log_db.logs USING btree (log_timestamp);
 
 
 --
--- TOC entry 2778 (class 2606 OID 17077)
+-- TOC entry 2895 (class 2606 OID 33917)
 -- Name: access_log fk8ne3u3l4xxei9axa3n8gg8no1; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -871,7 +871,7 @@ ALTER TABLE ONLY log_db.access_log
 
 
 --
--- TOC entry 2782 (class 2606 OID 17082)
+-- TOC entry 2901 (class 2606 OID 33922)
 -- Name: user_roles fkh8ciramu9cc9q3qcqiv4ue8a6; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -880,7 +880,7 @@ ALTER TABLE ONLY log_db.user_roles
 
 
 --
--- TOC entry 2783 (class 2606 OID 17087)
+-- TOC entry 2902 (class 2606 OID 33927)
 -- Name: user_roles fkhfh9dx7w3ubf1co1vdev94g3f; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -889,7 +889,7 @@ ALTER TABLE ONLY log_db.user_roles
 
 
 --
--- TOC entry 2779 (class 2606 OID 17092)
+-- TOC entry 2896 (class 2606 OID 33932)
 -- Name: blocks fkhlqb7anx4xxn833j433vic1kg; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -898,7 +898,7 @@ ALTER TABLE ONLY log_db.blocks
 
 
 --
--- TOC entry 2784 (class 2606 OID 17383)
+-- TOC entry 2899 (class 2606 OID 33937)
 -- Name: user_queries fkj1rfetxfu4hwawxr6qfdjdf1y; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -907,7 +907,7 @@ ALTER TABLE ONLY log_db.user_queries
 
 
 --
--- TOC entry 2780 (class 2606 OID 17097)
+-- TOC entry 2897 (class 2606 OID 33942)
 -- Name: destinations fkjanbg521j1nipeu1n1nb4g9ai; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -916,7 +916,7 @@ ALTER TABLE ONLY log_db.destinations
 
 
 --
--- TOC entry 2785 (class 2606 OID 17388)
+-- TOC entry 2900 (class 2606 OID 33947)
 -- Name: user_queries fkmmxi9cv1y16nn8bmahf3q6v2n; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -925,7 +925,7 @@ ALTER TABLE ONLY log_db.user_queries
 
 
 --
--- TOC entry 2781 (class 2606 OID 17102)
+-- TOC entry 2898 (class 2606 OID 33952)
 -- Name: hdfs_logs fkt4qs0t7t9jp8wyhs6pekim48y; Type: FK CONSTRAINT; Schema: log_db; Owner: postgres
 --
 
@@ -933,7 +933,7 @@ ALTER TABLE ONLY log_db.hdfs_logs
     ADD CONSTRAINT fkt4qs0t7t9jp8wyhs6pekim48y FOREIGN KEY (log_id) REFERENCES log_db.logs(log_id);
 
 
--- Completed on 2019-11-25 13:01:56
+-- Completed on 2019-11-25 15:03:45 EET
 
 --
 -- PostgreSQL database dump complete
