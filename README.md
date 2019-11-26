@@ -32,7 +32,13 @@ https://localhost:8080/
 
 # Final Schema
 
+![alt text](src/main/postgresql/log_db.jpg "DB Schema")
+
 # Functions
+
+Their implementation can be seen through the file schema:
+
+```src/main/postgresql/log_db.sql```
 
 # Sample Snapshots
 
