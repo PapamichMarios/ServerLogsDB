@@ -35,7 +35,7 @@ https://localhost:8080/
 ![alt text](src/main/postgresql/log_db.jpg "DB Schema")
 
 The main relation in our database is the logs relation. It contains all the information present in every type of log and
-its primary key is an auto-incremented value which acts as the id for each log. This attribute is also referenced by 
+it's primary key is an auto-incremented value which acts as the id for each log. This attribute is also referenced by 
 every other relation in our schema and it allows us to have the database in second normal form (2NF) since there are no values dependent
 on a subset of any candidate key (the only candidate key here is the minimal superkey log_id). As for 3NF normalization we allowed some 
 tables to remain non normalized (such as access table where some fields might be dependent on other non-candidate key fields) to speed 
@@ -44,14 +44,14 @@ up queries.
 We also experimented with various indexes and index types. The most efficient index is a b-tree on the timestamp column on log_id as
 it speeds up ranged queries like function1 by quite a lot.
 This can be seen by the times displayed below:
-![alt text](Wiki%20Photos/f1noin.jpg "Function1 without index")
-![alt text](Wiki%20Photos/f1timein.jpg "Function1 with b-tree index on timestamp")
+![alt text](Wiki%20Photos/f1noin.png "Function1 without index")
+![alt text](Wiki%20Photos/f1timein.png "Function1 with b-tree index on timestamp")
 
 Some other indices like on http methods for the last functions did not give us any significant performance gains. Function5 was better 
 with index on referer:
 
-![alt text](Wiki%20Photos/f5noin.jpg "Function5 without index")
-![alt text](Wiki%20Photos/f5btreerefin.jpg "Function5 with b-tree index on referer")
+![alt text](Wiki%20Photos/f5noin.png "Function5 without index")
+![alt text](Wiki%20Photos/f5btreerefin.png "Function5 with b-tree index on referer")
 
 # Functions
 
