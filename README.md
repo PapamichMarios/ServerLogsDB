@@ -44,13 +44,16 @@ up queries.
 We also experimented with various indexes and index types. The most efficient index is a b-tree on the timestamp column on log_id as
 it speeds up ranged queries like function1 by quite a lot.
 This can be seen by the times displayed below:
+
 ![alt text](Wiki%20Photos/f1noin.png "Function1 without index")
+
 ![alt text](Wiki%20Photos/f1timein.png "Function1 with b-tree index on timestamp")
 
 Some other indices like on http methods for the last functions did not give us any significant performance gains. Function5 was better 
 with index on referer:
 
 ![alt text](Wiki%20Photos/f5noin.png "Function5 without index")
+
 ![alt text](Wiki%20Photos/f5btreerefin.png "Function5 with b-tree index on referer")
 
 # Functions
