@@ -83,4 +83,4 @@ Their implementation can be seen through the file schema:
 ![alt text](Wiki%20Photos/procedure1_after.png "Procedure 1 After Results")
 
 # Github Link
-[ServerLogs](https://github.com/PapamichMarios/ServerLogs)
+[ServerLogs](https://github.com/PapamichMarios/ServerLogsDB)
